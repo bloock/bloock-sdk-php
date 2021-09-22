@@ -4,8 +4,6 @@ namespace Bloock\Config\Service;
 
 use Bloock\Config\Entity\Configuration;
 use Bloock\Config\Entity\NetworkConfiguration;
-use Bloock\Config\Repository\ConfigData;
-use Bloock\Config\Repository\ConfigRepository;
 use Bloock\Config\Repository\IConfigRepository;
 
 class ConfigService implements IConfigService

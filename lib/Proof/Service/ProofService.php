@@ -6,10 +6,8 @@ use Bloock\Proof\Entity\Exception\InvalidProofException;
 use Bloock\Proof\Entity\Exception\ProofNotFoundException;
 use Bloock\Proof\Entity\Proof;
 use Bloock\Proof\Repository\IProofRepository;
-use Bloock\Proof\Repository\ProofRepository;
 use Bloock\Record\Entity\Exception\InvalidRecordException;
 use Bloock\Record\Entity\Record;
-use Exception;
 use InvalidArgumentException;
 
 final class ProofService implements IProofService

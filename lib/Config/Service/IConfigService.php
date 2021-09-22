@@ -3,7 +3,6 @@
 namespace Bloock\Config\Service;
 
 use Bloock\Config\Entity\Configuration;
-use Bloock\Config\Entity\Network;
 use Bloock\Config\Entity\NetworkConfiguration;
 
 interface IConfigService

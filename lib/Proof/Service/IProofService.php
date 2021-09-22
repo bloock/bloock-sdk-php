@@ -2,7 +2,6 @@
 
 namespace Bloock\Proof\Service;
 
-use Bloock\Anchor\Entity\Anchor;
 use Bloock\Proof\Entity\Proof;
 
 interface IProofService
