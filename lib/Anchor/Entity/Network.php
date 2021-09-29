@@ -4,9 +4,9 @@ namespace Bloock\Anchor\Entity;
 
 class Network
 {
-    public string $name;
-    public string $state;
-    public string $txHash;
+    public $name;
+    public $state;
+    public $txHash;
 
     public function __construct(string $name, string $state, string $txHash)
     {

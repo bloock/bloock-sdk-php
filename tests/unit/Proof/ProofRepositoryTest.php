@@ -16,11 +16,11 @@ use PHPUnit\Framework\TestCase;
 final class ProofRepositoryTest extends TestCase
 {
 
-    private MockObject $configServiceMock;
-    private MockObject $httpClientMock;
-    private MockObject $blockchainClientMock;
+    private $configServiceMock;
+    private $httpClientMock;
+    private $blockchainClientMock;
 
-    private IProofRepository $proofRepository;
+    private $proofRepository;
 
     protected function setUp(): void
     {

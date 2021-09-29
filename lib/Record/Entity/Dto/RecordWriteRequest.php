@@ -6,7 +6,7 @@ use Bloock\Record\Entity\Record;
 
 class RecordWriteRequest
 {
-    public array $messages;
+    public $messages;
 
     public function __construct(array $records)
     {

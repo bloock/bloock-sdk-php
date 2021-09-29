@@ -4,10 +4,10 @@ namespace Bloock\Record\Entity;
 
 class RecordReceipt
 {
-    public int $anchor;
-    public string $client;
-    public string $record;
-    public string $status;
+    public $anchor;
+    public $client;
+    public $record;
+    public $status;
 
     public function __construct(int $anchor, string $client, string $record, string $status)
     {

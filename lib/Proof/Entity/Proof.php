@@ -11,10 +11,10 @@ use Exception;
  */
 class Proof
 {
-    public array $leaves;
-    public array $nodes;
-    public string $depth;
-    public string $bitmap;
+    public $leaves;
+    public $nodes;
+    public $depth;
+    public $bitmap;
 
     public function __construct(array $leaves, array $nodes, string $depth, string $bitmap)
     {

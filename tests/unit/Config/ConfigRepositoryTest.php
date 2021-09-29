@@ -11,8 +11,8 @@ use PHPUnit\Framework\TestCase;
 final class ConfigRepositoryTest extends TestCase
 {
 
-    private ConfigData $configDataMock;
-    private IConfigRepository $configRepository;
+    private $configDataMock;
+    private $configRepository;
 
     protected function setUp(): void
     {

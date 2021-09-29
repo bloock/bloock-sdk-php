@@ -16,8 +16,8 @@ use PHPUnit\Framework\TestCase;
 final class RecordServiceTest extends TestCase
 {
 
-    private MockObject $recordRepositoryMock;
-    private IRecordService $recordService;
+    private $recordRepositoryMock;
+    private $recordService;
 
     protected function setUp(): void
     {

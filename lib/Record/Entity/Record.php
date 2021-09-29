@@ -14,9 +14,9 @@ use Bloock\Shared\Utils;
  */
 class Record
 {
-    private string $hash;
+    private $hash;
 
-    public static Hashing $hashingAlgorithm;
+    public static $hashingAlgorithm;
 
     private function __construct(string $hash)
     {
@@ -54,7 +54,7 @@ class Record
     public static function fromHex(string $hex): Record
     {
         $dataArray = Utils::hexToString($hex);
-        return new Record(Record::$hashingAlgorithm->generateHash($dataArray));
+        return new Record(Record::getHashingAlgorithm()->generateHash($dataArray));
     }
 
     /**
@@ -65,7 +65,7 @@ class Record
      */
     public static function fromString(string $string): Record
     {
-        return new Record(Record::$hashingAlgorithm->generateHash($string));
+        return new Record(Record::getHashingAlgorithm()->generateHash($string));
     }
 
     /**
@@ -77,7 +77,7 @@ class Record
     public static function fromUint8Array(array $dataArray): Record
     {
         $data = Utils::bytesToString($dataArray);
-        return new Record(Record::$hashingAlgorithm->generateHash($data));
+        return new Record(Record::getHashingAlgorithm()->generateHash($data));
     }
 
     /**
@@ -125,6 +125,11 @@ class Record
     public function getUint8ArrayHash(): array
     {
         return Utils::hexToBytes($this->hash);
+    }
+
+    private static function getHashingAlgorithm(): Hashing
+    {
+        return Record::$hashingAlgorithm;
     }
 }
 

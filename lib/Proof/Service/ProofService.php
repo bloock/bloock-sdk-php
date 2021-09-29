@@ -12,7 +12,7 @@ use InvalidArgumentException;
 
 final class ProofService implements IProofService
 {
-    private IProofRepository $proofRepository;
+    private $proofRepository;
 
     public function __construct(IProofRepository $proofRepository)
     {
@@ -33,7 +33,7 @@ final class ProofService implements IProofService
 
         $sorted = Record::sort($records);
 
-        $response =  $this->proofRepository->retrieveProof($sorted);
+        $response =  $this->getProofRepository()->retrieveProof($sorted);
 
         return new Proof(
             $response->leaves,
@@ -55,11 +55,16 @@ final class ProofService implements IProofService
 
     public function verifyProof(Proof $proof, string $network): int
     {
-        $root = $this->proofRepository->verifyProof($proof);
+        $root = $this->getProofRepository()->verifyProof($proof);
         if ($root == null) {
             throw new InvalidProofException();
         }
 
-        return $this->proofRepository->validateRoot($network, $root);
+        return $this->getProofRepository()->validateRoot($network, $root);
+    }
+
+    private function getProofRepository(): IProofRepository
+    {
+        return $this->proofRepository;
     }
 }

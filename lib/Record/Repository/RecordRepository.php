@@ -12,8 +12,8 @@ use Bloock\Record\Repository\IRecordRepository;
 
 final class RecordRepository implements IRecordRepository
 {
-    private HttpClient $httpClient;
-    private IConfigService $configService;
+    private $httpClient;
+    private $configService;
 
     public function __construct(HttpClient $httpClient, IConfigService $configService)
     {
@@ -23,18 +23,18 @@ final class RecordRepository implements IRecordRepository
 
     public function sendRecords(array $records): RecordWriteResponse
     {
-        $url = $this->configService->getApiBaseUrl() . "/core/messages";
+        $url = $this->getConfigService()->getApiBaseUrl() . "/core/messages";
         $body = new RecordWriteRequest($records);
 
-        return new RecordWriteResponse($this->httpClient->post($url, $body));
+        return new RecordWriteResponse($this->getHttpClient()->post($url, $body));
     }
 
     public function fetchRecords(array $records): array
     {
-        $url = $this->configService->getApiBaseUrl() . "/core/messages/fetch";
+        $url = $this->getConfigService()->getApiBaseUrl() . "/core/messages/fetch";
         $body = new RecordRetrieveRequest($records);
 
-        $response = $this->httpClient->post($url, $body);
+        $response = $this->getHttpClient()->post($url, $body);
 
         $retrieveResponse = [];
         foreach ($response as $item) {
@@ -42,5 +42,15 @@ final class RecordRepository implements IRecordRepository
         }
 
         return $retrieveResponse;
+    }
+
+    private function getHttpClient(): HttpClient
+    {
+        return $this->httpClient;
+    }
+
+    private function getConfigService(): IConfigService
+    {
+        return $this->configService;
     }
 }

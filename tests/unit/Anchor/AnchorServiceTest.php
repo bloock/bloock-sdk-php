@@ -19,10 +19,10 @@ final class AnchorServiceTest extends TestCase
     private $counter;
     private $maxCount;
 
-    private MockObject $configServiceMock;
-    private MockObject $anchorRepositoryMock;
+    private $configServiceMock;
+    private $anchorRepositoryMock;
 
-    private IAnchorService $anchorService;
+    private $anchorService;
 
     protected function setUp(): void
     {

@@ -15,9 +15,9 @@ use Exception;
 
 final class ProofRepository implements IProofRepository
 {
-    private HttpClient $httpClient;
-    private Blockchain $blockchainClient;
-    private IConfigService $configService;
+    private $httpClient;
+    private $blockchainClient;
+    private $configService;
 
     public function __construct(HttpClient $httpClient, Blockchain $blockchainClient, IConfigService $configService)
     {
@@ -28,9 +28,9 @@ final class ProofRepository implements IProofRepository
 
     public function retrieveProof(array $records): ProofRetrieveResponse
     {
-        $url = $this->configService->getApiBaseUrl() . "/core/proof";
+        $url = $this->getConfigService()->getApiBaseUrl() . "/core/proof";
         $body = new ProofRetrieveRequest($records);
-        return new ProofRetrieveResponse($this->httpClient->post($url, $body));
+        return new ProofRetrieveResponse($this->getHttpClient()->post($url, $body));
     }
 
     public function verifyProof(Proof $proof): Record
@@ -84,6 +84,21 @@ final class ProofRepository implements IProofRepository
 
     public function validateRoot(string $network, Record $root): int
     {
-        return $this->blockchainClient->validateRoot($network, $root->getHash());
+        return $this->getBlockchainClient()->validateRoot($network, $root->getHash());
+    }
+
+    private function getHttpClient(): HttpClient
+    {
+        return $this->httpClient;
+    }
+
+    private function getBlockchainClient(): Blockchain
+    {
+        return $this->blockchainClient;
+    }
+
+    private function getConfigService(): IConfigService
+    {
+        return $this->configService;
     }
 }

@@ -6,11 +6,11 @@ use Bloock\Anchor\Entity\Network;
 
 class AnchorRetrieveResponse
 {
-    public int $anchorId;
-    public array $blockRoots;
-    public array $networks;
-    public string $root;
-    public string $status;
+    public $anchorId;
+    public $blockRoots;
+    public $networks;
+    public $root;
+    public $status;
 
     public function __construct(array $response)
     {

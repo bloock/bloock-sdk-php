@@ -8,7 +8,7 @@ use Bloock\Config\Repository\IConfigRepository;
 
 class ConfigService implements IConfigService
 {
-    private IConfigRepository $configRepository;
+    private $configRepository;
 
     public function __construct(IConfigRepository $configRepository)
     {
@@ -17,26 +17,31 @@ class ConfigService implements IConfigService
 
     public function getConfiguration(): Configuration
     {
-        return $this->configRepository->getConfiguration();
+        return $this->getConfigRepository()->getConfiguration();
     }
 
     public function getApiBaseUrl(): string
     {
-        return $this->configRepository->getConfiguration()->HOST;
+        return $this->getConfigRepository()->getConfiguration()->HOST;
     }
 
     public function setApiHost(string $host): void
     {
-        $this->configRepository->setApiHost($host);
+        $this->getConfigRepository()->setApiHost($host);
     }
 
     public function getNetworkConfiguration(string $network): NetworkConfiguration
     {
-        return $this->configRepository->getNetworkConfiguration($network);
+        return $this->getConfigRepository()->getNetworkConfiguration($network);
     }
 
     public function setNetworkConfiguration(string $network, NetworkConfiguration $config): void
     {
-        $this->configRepository->setNetworkConfiguration($network, $config);
+        $this->getConfigRepository()->setNetworkConfiguration($network, $config);
+    }
+
+    private function getConfigRepository(): IConfigRepository
+    {
+        return $this->configRepository;
     }
 }

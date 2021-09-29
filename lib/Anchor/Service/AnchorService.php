@@ -19,8 +19,8 @@ use Exception;
 
 final class AnchorService implements IAnchorService
 {
-    private IAnchorRepository $anchorRepository;
-    private IConfigService $configService;
+    private $anchorRepository;
+    private $configService;
 
     public function __construct(IAnchorRepository $anchorRepository, IConfigService $configService)
     {
@@ -34,7 +34,7 @@ final class AnchorService implements IAnchorService
             throw new InvalidArgumentException();
         }
 
-        $response = $this->anchorRepository->getAnchor($id);
+        $response = $this->getAnchorRepository()->getAnchor($id);
         $anchor = new Anchor($response->anchorId, $response->blockRoots, $response->networks, $response->root, $response->status);
         if ($anchor == null) {
             throw new AnchorNotFoundException();
@@ -53,7 +53,7 @@ final class AnchorService implements IAnchorService
         $anchor = null;
         $now = new \DateTime();
         $start = $now->getTimestamp();
-        $nextTry = $start + $this->configService->getConfiguration()->WAIT_MESSAGE_INTERVAL_DEFAULT;
+        $nextTry = $start + $this->getConfigService()->getConfiguration()->WAIT_MESSAGE_INTERVAL_DEFAULT;
         $timeoutTime = $start + $timeout;
 
         while (true) {
@@ -80,7 +80,7 @@ final class AnchorService implements IAnchorService
                     $currentTime = $now->getTimestamp();
                 }
 
-                $nextTry += $attempts * $this->configService->getConfiguration()->WAIT_MESSAGE_INTERVAL_FACTOR + $this->configService->getConfiguration()->WAIT_MESSAGE_INTERVAL_DEFAULT;
+                $nextTry += $attempts * $this->getConfigService()->getConfiguration()->WAIT_MESSAGE_INTERVAL_FACTOR + $this->getConfigService()->getConfiguration()->WAIT_MESSAGE_INTERVAL_DEFAULT;
                 $attempts += 1;
 
                 if ($currentTime >= $timeoutTime) {
@@ -88,5 +88,15 @@ final class AnchorService implements IAnchorService
                 }
             }
         }
+    }
+
+    private function getAnchorRepository(): IAnchorRepository
+    {
+        return $this->anchorRepository;
+    }
+
+    private function getConfigService(): IConfigService
+    {
+        return $this->configService;
     }
 }

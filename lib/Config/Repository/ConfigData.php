@@ -8,8 +8,8 @@ use Bloock\Config\Entity\NetworkConfiguration;
 
 class ConfigData
 {
-    private Configuration $config;
-    private array $networksConfig = [];
+    private $config;
+    private $networksConfig = [];
 
     public function __construct()
     {
@@ -30,7 +30,7 @@ class ConfigData
 
     public function setApiHost($host)
     {
-        $this->config->HOST = $host;
+        $this->getConfiguration()->HOST = $host;
     }
 
     public function getNetworkConfiguration(string $network): NetworkConfiguration

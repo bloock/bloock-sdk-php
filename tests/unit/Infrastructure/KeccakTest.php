@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 final class KeccakTest extends TestCase
 {
-    private Hashing $hashingClient;
+    private $hashingClient;
 
     protected function setUp(): void
     {

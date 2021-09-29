@@ -4,16 +4,16 @@ namespace Bloock\Config\Entity;
 
 class Configuration
 {
-    public string $HOST = "";
-    public int $WAIT_MESSAGE_INTERVAL_FACTOR = 2;
-    public int $WAIT_MESSAGE_INTERVAL_DEFAULT = 1000;
+    public $HOST = "";
+    public $WAIT_MESSAGE_INTERVAL_FACTOR = 2;
+    public $WAIT_MESSAGE_INTERVAL_DEFAULT = 1000;
 }
 
 class NetworkConfiguration
 {
-    public string $CONTRACT_ADDRESS = "";
-    public string $CONTRACT_ABI = "";
-    public string $HTTP_PROVIDER = "";
+    public $CONTRACT_ADDRESS = "";
+    public $CONTRACT_ABI = "";
+    public $HTTP_PROVIDER = "";
 
     public function __construct(string $contractAddress, string $contractAbi, string $httpProvider)
     {

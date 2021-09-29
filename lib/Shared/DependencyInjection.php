@@ -18,21 +18,21 @@ use Bloock\Proof\Service\ProofService;
 
 class DependencyInjection
 {
-    public static HttpClient $httpClient;
-    private static Blockchain $blockchainClient;
+    private static $httpClient;
+    private static $blockchainClient;
 
-    private static ConfigData $configData;
-    private static ConfigRepository $configRepository;
-    public static ConfigService $configService;
+    private static $configData;
+    private static $configRepository;
+    private static $configService;
 
-    private static AnchorRepository $anchorRepository;
-    public static AnchorService $anchorService;
+    private static $anchorRepository;
+    private static $anchorService;
 
-    private static RecordRepository $recordRepository;
-    public static RecordService $recordService;
+    private static $recordRepository;
+    private static $recordService;
 
-    private static ProofRepository $proofRepository;
-    public static ProofService $proofService;
+    private static $proofRepository;
+    private static $proofService;
 
     public static function setUp()
     {
@@ -51,6 +51,61 @@ class DependencyInjection
 
         DependencyInjection::$proofRepository = new ProofRepository(DependencyInjection::$httpClient, DependencyInjection::$blockchainClient, DependencyInjection::$configService);
         DependencyInjection::$proofService = new ProofService(DependencyInjection::$proofRepository);
+    }
+
+    public static function getHttpClient(): HttpClient
+    {
+        return DependencyInjection::$httpClient;
+    }
+
+    public static function getBlockchainClient(): Blockchain
+    {
+        return DependencyInjection::$blockchainClient;
+    }
+
+    public static function getConfigData(): ConfigData
+    {
+        return DependencyInjection::$configData;
+    }
+
+    public static function getConfigRepository(): ConfigRepository
+    {
+        return DependencyInjection::$configRepository;
+    }
+
+    public static function getConfigService(): ConfigService
+    {
+        return DependencyInjection::$configService;
+    }
+
+    public static function getAnchorRepository(): AnchorRepository
+    {
+        return DependencyInjection::$anchorRepository;
+    }
+
+    public static function getAnchorService(): AnchorService
+    {
+        return DependencyInjection::$anchorService;
+    }
+
+    public static function getRecordRepository(): RecordRepository
+    {
+        return DependencyInjection::$recordRepository;
+    }
+
+    public static function getRecordService(): RecordService
+    {
+        return DependencyInjection::$recordService;
+    }
+
+    public static function getProofRepository(): ProofRepository
+    {
+        return DependencyInjection::$proofRepository;
+    }
+
+    public static function getProofService(): ProofService
+    {
+        return DependencyInjection::$proofService;
     }
 }
 

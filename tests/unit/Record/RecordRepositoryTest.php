@@ -13,9 +13,9 @@ use PHPUnit\Framework\TestCase;
 final class RecordRepositoryTest extends TestCase
 {
 
-    private MockObject $configServiceMock;
-    private MockObject $httpClientMock;
-    private IRecordRepository $recordRepository;
+    private $configServiceMock;
+    private $httpClientMock;
+    private $recordRepository;
 
     protected function setUp(): void
     {

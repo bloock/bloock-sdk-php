@@ -6,11 +6,11 @@ use Bloock\Anchor\Entity\Network;
 
 class ProofRetrieveResponse
 {
-    public array $leaves;
-    public array $nodes;
-    public string $depth;
-    public string $bitmap;
-    public string $root;
+    public $leaves;
+    public $nodes;
+    public $depth;
+    public $bitmap;
+    public $root;
 
     public function __construct(array $response)
     {

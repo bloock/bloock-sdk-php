@@ -32,11 +32,7 @@ final class AcceptanceTest extends TestCase
 
         $proof = $sdk->getProof($records);
         $timestamp = $sdk->verifyProof($proof, Network::BLOOCK_CHAIN);
-        if ($timestamp) {
-            echo `Record is valid - Timestamp: ${timestamp}`;
-        } else {
-            echo `Record is invalid`;
-        }
+
         $this->assertTrue($timestamp > 0);
     }
     /**

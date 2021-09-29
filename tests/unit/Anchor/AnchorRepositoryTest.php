@@ -12,10 +12,9 @@ use PHPUnit\Framework\TestCase;
 
 final class AnchorRepositoryTest extends TestCase
 {
-
-    private MockObject $configServiceMock;
-    private MockObject $httpClientMock;
-    private IAnchorRepository $anchorRepository;
+    private $configServiceMock;
+    private $httpClientMock;
+    private $anchorRepository;
 
     protected function setUp(): void
     {

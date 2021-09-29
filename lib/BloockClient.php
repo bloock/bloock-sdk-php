@@ -22,13 +22,6 @@ use Bloock\Proof\Service\ProofService;
  */
 final class BloockClient
 {
-    private AnchorService $anchorService;
-    private ConfigService $configService;
-    private RecordService $recordService;
-    private ProofService $proofService;
-
-    private HttpClient $httpClient;
-
     /**
      * Constructor with API Key that enables accessing to Bloock's functionalities.
      *
@@ -36,13 +29,7 @@ final class BloockClient
      */
     public function __construct(string $apiKey)
     {
-        $this->httpClient = DependencyInjection::$httpClient;
-        $this->httpClient->setApiKey($apiKey);
-
-        $this->anchorService = DependencyInjection::$anchorService;
-        $this->configService = DependencyInjection::$configService;
-        $this->recordService = DependencyInjection::$recordService;
-        $this->proofService = DependencyInjection::$proofService;
+        DependencyInjection::getHttpClient()->setApiKey($apiKey);
     }
 
     /**
@@ -53,7 +40,7 @@ final class BloockClient
      */
     public function setApiHost(string $host): void
     {
-        $this->configService->setApiHost($host);
+        DependencyInjection::getConfigService()->setApiHost($host);
     }
 
     /**
@@ -65,7 +52,7 @@ final class BloockClient
      */
     public function setNetworkConfiguration(string $network, NetworkConfiguration $configuration): void
     {
-        $this->configService->setNetworkConfiguration($network, $configuration);
+        DependencyInjection::getConfigService()->setNetworkConfiguration($network, $configuration);
     }
 
     /**
@@ -78,7 +65,7 @@ final class BloockClient
      */
     public function sendRecords(array $records): array
     {
-        return $this->recordService->sendRecords($records);
+        return DependencyInjection::getRecordService()->sendRecords($records);
     }
 
     /**
@@ -91,7 +78,7 @@ final class BloockClient
      */
     public function getRecords(array $records): array
     {
-        return $this->recordService->getRecords($records);
+        return DependencyInjection::getRecordService()->getRecords($records);
     }
 
     /**
@@ -104,7 +91,7 @@ final class BloockClient
      */
     public function getAnchor(int $anchor): Anchor
     {
-        return $this->anchorService->getAnchor($anchor);
+        return DependencyInjection::getAnchorService()->getAnchor($anchor);
     }
 
     /**
@@ -120,7 +107,7 @@ final class BloockClient
      */
     public function waitAnchor(int $anchor, int $timeout = 120000): Anchor
     {
-        return $this->anchorService->waitAnchor($anchor, $timeout);
+        return DependencyInjection::getAnchorService()->waitAnchor($anchor, $timeout);
     }
 
     /**
@@ -133,7 +120,7 @@ final class BloockClient
      */
     public function getProof(array $records): Proof
     {
-        return $this->proofService->retrieveProof($records);
+        return DependencyInjection::getProofService()->retrieveProof($records);
     }
 
     /**
@@ -146,7 +133,7 @@ final class BloockClient
      */
     public function verifyProof(Proof $proof, string $network): int
     {
-        return $this->proofService->verifyProof($proof, $network);
+        return DependencyInjection::getProofService()->verifyProof($proof, $network);
     }
 
     /**
@@ -161,6 +148,6 @@ final class BloockClient
      */
     public function verifyRecords(array $records, string $network): int
     {
-        return $this->proofService->verifyRecords($records, $network);
+        return DependencyInjection::getProofService()->verifyRecords($records, $network);
     }
 }

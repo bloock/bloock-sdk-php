@@ -10,7 +10,7 @@ use Bloock\Record\Repository\IRecordRepository;
 
 final class RecordService implements IRecordService
 {
-    private IRecordRepository $recordRepository;
+    private $recordRepository;
 
     public function __construct(IRecordRepository $recordRepository)
     {
@@ -29,7 +29,7 @@ final class RecordService implements IRecordService
             }
         }
 
-        $response = $this->recordRepository->sendRecords($records);
+        $response = $this->getRecordRepository()->sendRecords($records);
         if ($response == null) {
             return [];
         }
@@ -59,7 +59,7 @@ final class RecordService implements IRecordService
             }
         }
 
-        $response = $this->recordRepository->fetchRecords($records);
+        $response = $this->getRecordRepository()->fetchRecords($records);
         if ($response == null) {
             return [];
         }
@@ -77,5 +77,10 @@ final class RecordService implements IRecordService
         }
 
         return $result;
+    }
+
+    private function getRecordRepository(): IRecordRepository
+    {
+        return $this->recordRepository;
     }
 }

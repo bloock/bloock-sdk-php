@@ -6,10 +6,10 @@ use Bloock\Record\Entity\Record;
 
 class RecordWriteResponse
 {
-    public int $anchor;
-    public string $client;
-    public array $messages;
-    public string $status;
+    public $anchor;
+    public $client;
+    public $messages;
+    public $status;
 
     public function __construct(array $response)
     {

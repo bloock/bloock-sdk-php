@@ -8,7 +8,7 @@ use Web3\Contract;
 
 final class Web3 implements Blockchain
 {
-    private ConfigService $configService;
+    private $configService;
 
     public function __construct(ConfigService $configService)
     {
@@ -17,7 +17,7 @@ final class Web3 implements Blockchain
 
     public function validateRoot(string $network, string $root): int
     {
-        $config = $this->configService->getNetworkConfiguration($network);
+        $config = $this->getConfigService()->getNetworkConfiguration($network);
 
         $contract = new Contract(
             $config->HTTP_PROVIDER,
@@ -37,5 +37,10 @@ final class Web3 implements Blockchain
         $contract->at($config->CONTRACT_ADDRESS)->call("getState", '0x' . $root, $callback);
 
         return $response;
+    }
+
+    private function getConfigService(): ConfigService
+    {
+        return $this->configService;
     }
 }
