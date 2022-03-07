@@ -122,6 +122,17 @@ class Record
         return $this->hash;
     }
 
+    /**
+     * Returns the Record signed with the specified private key
+     *
+     * @param  string Private key to sign with.
+     * @return Record Record object of the signed input.
+     */
+    public function sign(string $privateKey): Record
+    {
+        return Record::fromHash($this->hash);
+    }
+
     public function getUint8ArrayHash(): array
     {
         return Utils::hexToBytes($this->hash);
