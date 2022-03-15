@@ -54,7 +54,7 @@ final class GuzzleHttp implements HttpClient
                 throw new HttpException($message);
             }
         } catch (RuntimeException $exception) {
-            throw new HttpException();
+            throw new HttpException($exception->getMessage());
         }
 
         $content = (string) $response->getBody();
