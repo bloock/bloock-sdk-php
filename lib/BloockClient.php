@@ -124,30 +124,40 @@ final class BloockClient
     }
 
     /**
-     * Verifies if the specified integrity Proof is valid and checks if it's currently included in the blockchain.
+     * Verifies if the specified integrity Proof is valid.
      *
      * @param  Proof Proof to validate.
-     * @param  string blockchain network where the proof will be validated
-     * @return int A number representing the timestamp in milliseconds when the anchor was registered in Blockchain
-     * @throws Web3Exception Error connecting to blockchain.
+     * @return Record Integrity proof's root record.
+     * @throws ProofNotFoundException Proof not found.
      */
-    public function verifyProof(Proof $proof, string $network): int
+    public function verifyProof(Proof $proof): Record
     {
-        return DependencyInjection::getProofService()->verifyProof($proof, $network);
+        return DependencyInjection::getProofService()->verifyProof($proof);
     }
 
     /**
      * It retrieves a proof for the specified list of Anchor using getProof and verifies it using verifyProof.
      *
      * @param  mixed list of records to validate
-     * @param  mixed blockchain network where the records will be validated
-     * @return int A number representing the timestamp in milliseconds when the anchor was registered in Blockchain
-     * @throws InvalidArgumentException Informs that the input is not a number.
+     * @return Record The integrity proof's root Record
+     * @throws InvalidArgumentException Informs that the input is empty.
      * @throws HttpRequestException Error return by Bloock's API.
-     * @throws Web3Exception Error connecting to blockchain.
+     * @throws ProofNotFoundException Proof not found.
      */
     public function verifyRecords(array $records, string $network): int
     {
         return DependencyInjection::getProofService()->verifyRecords($records, $network);
+    }
+
+    /**
+     * Checks if the integrity Proof is currently included in the blockchain.
+     * 
+     * @param  Record An integrity Proof's root Record.
+     * @param  string blockchain network where the records will be validated.
+     * @return int A number representing the timestamp in milliseconds when the anchor was registered in Blockchain.
+     * @throws Web3Exception Error connecting to blockchain.
+    */
+    public function validateProof(Record $root, string $network): int {
+        return DependencyInjection::getProofService()->validateProof($root, $network);
     }
 }

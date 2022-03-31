@@ -43,23 +43,28 @@ final class ProofService implements IProofService
         );
     }
 
-    public function verifyRecords(array $records, string $network): int
+    public function verifyRecords(array $records): Record
     {
         $proof = $this->retrieveProof($records);
         if ($proof == null) {
             throw new ProofNotFoundException();
         }
 
-        return $this->verifyProof($proof, $network);
+        return $this->verifyProof($proof);
     }
 
-    public function verifyProof(Proof $proof, string $network): int
+    public function verifyProof(Proof $proof): Record
     {
         $root = $this->getProofRepository()->verifyProof($proof);
         if ($root == null) {
             throw new InvalidProofException();
         }
 
+        return $root;
+    }
+
+    public function validateProof(Record $root, string $network): int
+    {
         return $this->getProofRepository()->validateRoot($network, $root);
     }
 

@@ -26,6 +26,8 @@ final class RecordRepository implements IRecordRepository
         $url = $this->getConfigService()->getApiBaseUrl() . "/core/messages";
         $body = new RecordWriteRequest($records);
 
+        fwrite(STDERR, print_r($url."\n", TRUE));
+
         return new RecordWriteResponse($this->getHttpClient()->post($url, $body));
     }
 
