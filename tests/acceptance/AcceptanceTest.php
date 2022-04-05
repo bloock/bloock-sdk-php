@@ -31,7 +31,8 @@ final class AcceptanceTest extends TestCase
         $sdk->waitAnchor($sendReceipts[0]->anchor, 60000);
 
         $proof = $sdk->getProof($records);
-        $timestamp = $sdk->verifyProof($proof, Network::BLOOCK_CHAIN);
+        $root = $sdk->verifyProof($proof);
+        $timestamp = $sdk->validateProof($root, Network::BLOOCK_CHAIN);
 
         $this->assertTrue($timestamp > 0);
     }

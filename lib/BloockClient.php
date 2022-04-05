@@ -10,6 +10,7 @@ use Bloock\Config\Service\ConfigService;
 use Bloock\Infrastructure\HttpClient;
 use Bloock\Shared\DependencyInjection;
 use Bloock\Proof\Entity\Proof;
+use Bloock\Record\Entity\Record;
 use Bloock\Proof\Service\ProofService;
 
 /**
@@ -144,7 +145,7 @@ final class BloockClient
      * @throws HttpRequestException Error return by Bloock's API.
      * @throws ProofNotFoundException Proof not found.
      */
-    public function verifyRecords(array $records, string $network): int
+    public function verifyRecords(array $records, string $network): Record
     {
         return DependencyInjection::getProofService()->verifyRecords($records, $network);
     }
