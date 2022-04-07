@@ -4,7 +4,9 @@ namespace Bloock\Record\Entity;
 
 use Bloock\Infrastructure\Hashing;
 use Bloock\Infrastructure\Hashing\Keccak;
+use Bloock\Record\Entity\Document\Document;
 use Bloock\Shared\Utils;
+use Bloock\Record\Entity\Document\JsonDocument;
 
 /**
  * Record is the class in charge of computing and storing the
@@ -15,24 +17,22 @@ use Bloock\Shared\Utils;
 class Record
 {
     private $hash;
+    private Document $document;
 
     public static $hashingAlgorithm;
 
-    private function __construct(string $hash)
+    private function __construct(string $hash, Document $document = null)
     {
         $this->hash = $hash;
+
+        if (isset($document)) {
+            $this->document = $document;
+        }
     }
 
-    /**
-     * Given an JSON object, returns a Record with its value hashed.
-     *
-     * @param  array $object
-     * @return Record Record object of the hashed input.
-     */
-    public static function fromArray(array $object): Record
-    {
-        return Record::fromString(Utils::stringify($object));
-    }
+    // ------------------------------------------
+    // BASIC TYPE CONSTRUCTORS
+    // ------------------------------------------
 
     /**
      * Given a value already hashed creates a Record containing it.
@@ -74,11 +74,62 @@ class Record
      * @param  array Bytes object.
      * @return Record Record object of the hashed input.
      */
+    public static function fromTypedArray(array $src): Record
+    {
+        $data = Utils::bytesToString($src);
+        return new Record(Record::getHashingAlgorithm()->generateHash($data));
+    }
+
+    /**
+     * Given a bytes object returns a Record with its value hashed.
+     *
+     * @deprecated use fromTypedArray instead
+     * @param  array Bytes object.
+     * @return Record Record object of the hashed input.
+     */
     public static function fromUint8Array(array $dataArray): Record
     {
         $data = Utils::bytesToString($dataArray);
         return new Record(Record::getHashingAlgorithm()->generateHash($data));
     }
+
+    // ------------------------------------------
+    // DOCUMENT CONSTRUCTORS
+    // ------------------------------------------
+
+    private static function fromDocument(Document $document): Record
+    {
+        $data = Utils::bytesToString($document->getPayloadBytes());
+        return new Record(Record::getHashingAlgorithm()->generateHash($data), $document);
+    }
+
+    /**
+     * Given an JSON object, returns a Record with its value hashed.
+     *
+     * @param  array array containing the json values
+     * @return Record Record object of the hashed input.
+     */
+    public static function fromJSON(array $src): Record
+    {
+        $json = new JSONDocument($src);
+        return Record::fromDocument($json);
+    }
+
+    /**
+     * Given an JSON object, returns a Record with its value hashed.
+     *
+     * @deprecated use fromJSON method instead
+     * @param  array $object
+     * @return Record Record object of the hashed input.
+     */
+    public static function fromArray(array $object): Record
+    {
+        return Record::fromString(Utils::stringify($object));
+    }
+
+    // ------------------------------------------
+    // HELPERS
+    // ------------------------------------------
 
     /**
      * Given a Record returns True if its contents are valid to be sent to Bloock's API or False otherwise.
@@ -90,7 +141,7 @@ class Record
     {
         if ($record instanceof Record) {
             $_record = $record->getHash();
-            if ($_record != null && strlen($_record) == 64 && Utils::isHex($_record)) {
+            if (isset($_record) && strlen($_record) == 64 && Utils::isHex($_record)) {
                 return true;
             }
         }
@@ -112,6 +163,10 @@ class Record
         return $records;
     }
 
+    // ------------------------------------------
+    // PUBLIC FUNCTIONS
+    // ------------------------------------------
+
     /**
      * Returns the hashed representation of the Record string.
      *
@@ -120,6 +175,18 @@ class Record
     public function getHash(): string
     {
         return $this->hash;
+    }
+
+    /**
+     * Returns an updated version of the original data including optional metadata including signature and integrity proof attached
+     *
+     * @return any A new sversion of the original data in the same format
+     */
+    public function retrieve()
+    {
+        if (isset($this->document)) {
+            return $this->document->build();
+        }
     }
 
     /**

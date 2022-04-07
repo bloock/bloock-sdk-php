@@ -12,8 +12,19 @@ final class Utils
         sleep($ms / 1000);
     }
 
+    public static function sort_array(array &$array): void
+    {
+        ksort($array);
+        foreach (array_keys($array) as $k) {
+            if (gettype($array[$k]) == "array") {
+                Utils::sort_array($array[$k]);
+            }
+        }
+    }
+
     public static function stringify(array $data): string
     {
+        Utils::sort_array($data);
         return json_encode($data);
     }
 
