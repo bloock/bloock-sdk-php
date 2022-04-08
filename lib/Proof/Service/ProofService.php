@@ -50,16 +50,26 @@ final class ProofService implements IProofService
             throw new ProofNotFoundException();
         }
 
-        return $this->verifyProof($proof, $network);
+        $root = $this->verifyProof($proof);
+        if ($root == null) {
+            throw new InvalidProofException();
+        }
+
+        return $this->validateProof($root, $network);
     }
 
-    public function verifyProof(Proof $proof, string $network): int
+    public function verifyProof(Proof $proof): Record
     {
         $root = $this->getProofRepository()->verifyProof($proof);
         if ($root == null) {
             throw new InvalidProofException();
         }
 
+        return $root;
+    }
+
+    public function validateProof(Record $root, string $network): int
+    {
         return $this->getProofRepository()->validateRoot($network, $root);
     }
 
