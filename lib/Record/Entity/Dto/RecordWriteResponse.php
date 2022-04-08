@@ -17,7 +17,7 @@ class RecordWriteResponse
         $this->client = isset($response["client"]) ? $response["client"] : "";
 
         $this->messages = [];
-        if (isset($response["messages"]) && $response["messages"] != null) {
+        if (isset($response["messages"])) {
             foreach ($response["messages"] as &$message) {
                 array_push($this->messages, $message);
             }
