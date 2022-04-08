@@ -2,6 +2,7 @@
 
 namespace Bloock\Proof\Entity;
 
+use Bloock\Anchor\Entity\Anchor;
 use Bloock\Shared\Utils;
 use Exception;
 
@@ -15,13 +16,17 @@ class Proof
     public $nodes;
     public $depth;
     public $bitmap;
+    public $anchor;
 
-    public function __construct(array $leaves, array $nodes, string $depth, string $bitmap)
+    public function __construct(array $leaves, array $nodes, string $depth, string $bitmap, Anchor $anchor = null)
     {
         $this->leaves = $leaves;
         $this->nodes = $nodes;
         $this->depth = $depth;
         $this->bitmap = $bitmap;
+        if (isset($anchor)) {
+            $this->anchor = $anchor;
+        }
     }
 
     /**

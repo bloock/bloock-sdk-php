@@ -36,6 +36,18 @@ final class ProofRepositoryTest extends TestCase
      */
     public function test_retrieve_proof_okay()
     {
+        $mockNetworks = array();
+        $mockNetworks['name'] = 'bloock_chain';
+        $mockNetworks['tx_hash'] = '0xea004ce40674a4cbf603c25232be6a0391900ce1013c4586bee8262d8ff6bff9';
+        $mockNetworks['state'] = 'Confirmed';
+        $mockNetworks['created_at'] = 1629428382;
+
+
+        $mockAnchor = array();
+        $mockAnchor['anchor_id'] = 15;
+        $mockAnchor['root'] = '5831da9441843151d392e7d293c592b923271c8a2ea4fa96d7263f97d68021ed';
+        $mockAnchor['networks'] = $mockNetworks;
+        $mockAnchor['status'] = 'Success';
         $this->httpClientMock->method('post')
             ->willReturn(array(
                 'bitmap' => 'bfdf7000',
@@ -46,7 +58,8 @@ final class ProofRepositoryTest extends TestCase
                     '0616067c793ac533815ae2d48d785d339e0330ce5bb5345b5e6217dd9d1dbeab',
                     '68b8f6b25cc700e64ed3e3d33f2f246e24801f93d29786589fbbab3b11f5bcee'
                 ],
-                'root' => 'c6372dab6a48637173a457e3ae0c54a500bb50346e847eccf2b818ade94d8ccf'
+                'root' => 'c6372dab6a48637173a457e3ae0c54a500bb50346e847eccf2b818ade94d8ccf',
+                'anchor' =>  $mockAnchor
             ));
 
         $response = $this->proofRepository->retrieveProof(array(Record::fromHash('02aae7e86eb50f61a62083a320475d9d60cbd52749dbf08fa942b1b97f50aee5')));

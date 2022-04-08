@@ -139,14 +139,15 @@ final class BloockClient
     /**
      * It retrieves a proof for the specified list of Anchor using getProof, verifies it using verifyProof and checks if it's included in blockchain with validateRoot.
      *
-     * @param  mixed list of records to validate
+     * @param  mixed List of records to validate
+     * @param string|null Optional network to verify from. 
      * @return Record The integrity proof's root Record
      * @throws InvalidArgumentException Informs that the input is empty.
      * @throws HttpRequestException Error return by Bloock's API.
      * @throws ProofNotFoundException Proof not found.
      * @throws Web3Exception Error connecting to blockchain.
      */
-    public function verifyRecords(array $records, string $network): int
+    public function verifyRecords(array $records, string $network = null): int
     {
         return DependencyInjection::getProofService()->verifyRecords($records, $network);
     }
