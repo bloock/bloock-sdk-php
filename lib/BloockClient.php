@@ -137,6 +137,19 @@ final class BloockClient
     }
 
     /**
+     * Checks if the integrity Proof is currently included in the blockchain.
+     * 
+     * @param  Record An integrity Proof's root Record.
+     * @param  string blockchain network where the records will be validated.
+     * @return int A number representing the timestamp in milliseconds when the anchor was registered in Blockchain.
+     * @throws Web3Exception Error connecting to blockchain.
+     */
+    public function validateRoot(Record $root, string $network): int
+    {
+        return DependencyInjection::getProofService()->validateRoot($root, $network);
+    }
+
+    /**
      * It retrieves a proof for the specified list of Anchor using getProof, verifies it using verifyProof and checks if it's included in blockchain with validateRoot.
      *
      * @param  mixed List of records to validate
@@ -150,17 +163,5 @@ final class BloockClient
     public function verifyRecords(array $records, string $network = null): int
     {
         return DependencyInjection::getProofService()->verifyRecords($records, $network);
-    }
-
-    /**
-     * Checks if the integrity Proof is currently included in the blockchain.
-     * 
-     * @param  Record An integrity Proof's root Record.
-     * @param  string blockchain network where the records will be validated.
-     * @return int A number representing the timestamp in milliseconds when the anchor was registered in Blockchain.
-     * @throws Web3Exception Error connecting to blockchain.
-    */
-    public function validateProof(Record $root, string $network): int {
-        return DependencyInjection::getProofService()->validateProof($root, $network);
     }
 }

@@ -62,7 +62,7 @@ final class ProofService implements IProofService
         }
 
         if (!isset($network)) {
-            $network = Network::SelectNetwork($proof->anchor->networks[0]['name']);
+            $network = Network::SelectNetwork($proof->anchor->networks);
         }
 
         $root = $this->verifyProof($proof);
@@ -70,7 +70,7 @@ final class ProofService implements IProofService
             throw new InvalidProofException();
         }
 
-        return $this->validateProof($root, $network);
+        return $this->validateRoot($root, $network);
     }
 
     public function verifyProof(Proof $proof): Record
@@ -83,7 +83,7 @@ final class ProofService implements IProofService
         return $root;
     }
 
-    public function validateProof(Record $root, string $network): int
+    public function validateRoot(Record $root, string $network): int
     {
         return $this->getProofRepository()->validateRoot($network, $root);
     }
