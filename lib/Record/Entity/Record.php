@@ -7,6 +7,7 @@ use Bloock\Infrastructure\Hashing\Keccak;
 use Bloock\Record\Entity\Document\Document;
 use Bloock\Shared\Utils;
 use Bloock\Record\Entity\Document\JsonDocument;
+use Bloock\Record\Entity\Exception\InvalidRecordTypeException;
 
 /**
  * Record is the class in charge of computing and storing the
@@ -187,6 +188,8 @@ class Record
         if (isset($this->document)) {
             return $this->document->build();
         }
+
+        throw new InvalidRecordTypeException();
     }
 
     /**

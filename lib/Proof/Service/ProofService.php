@@ -2,6 +2,8 @@
 
 namespace Bloock\Proof\Service;
 
+use Bloock\Anchor\Entity\Anchor;
+use Bloock\Config\Entity\Network;
 use Bloock\Proof\Entity\Exception\InvalidProofException;
 use Bloock\Proof\Entity\Exception\ProofNotFoundException;
 use Bloock\Proof\Entity\Proof;
@@ -35,19 +37,32 @@ final class ProofService implements IProofService
 
         $response =  $this->getProofRepository()->retrieveProof($sorted);
 
+        $anchor = new Anchor(
+            $response->anchor['anchor_id'],
+            $response->anchor['blockRoots'] ?? [],
+            $response->anchor['networks'],
+            $response->anchor['root'],
+            $response->anchor['status']
+        );
+
         return new Proof(
             $response->leaves,
             $response->nodes,
             $response->depth,
-            $response->bitmap
+            $response->bitmap,
+            $anchor
         );
     }
 
-    public function verifyRecords(array $records, string $network): int
+    public function verifyRecords(array $records, string $network = null): int
     {
         $proof = $this->retrieveProof($records);
         if ($proof == null) {
             throw new ProofNotFoundException();
+        }
+
+        if (!isset($network)) {
+            $network = Network::SelectNetwork($proof->anchor->networks);
         }
 
         $root = $this->verifyProof($proof);
@@ -55,7 +70,7 @@ final class ProofService implements IProofService
             throw new InvalidProofException();
         }
 
-        return $this->validateProof($root, $network);
+        return $this->validateRoot($root, $network);
     }
 
     public function verifyProof(Proof $proof): Record
@@ -68,7 +83,7 @@ final class ProofService implements IProofService
         return $root;
     }
 
-    public function validateProof(Record $root, string $network): int
+    public function validateRoot(Record $root, string $network): int
     {
         return $this->getProofRepository()->validateRoot($network, $root);
     }

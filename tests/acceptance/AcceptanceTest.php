@@ -35,6 +35,10 @@ final class AcceptanceTest extends TestCase
         $timestamp = $sdk->validateProof($root, Network::BLOOCK_CHAIN);
 
         $this->assertTrue($timestamp > 0);
+
+        $timestamp = $sdk->verifyRecords($records);
+
+        $this->assertTrue($timestamp > 0);
     }
     /**
      * @group e2e

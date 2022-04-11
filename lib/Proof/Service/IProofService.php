@@ -10,5 +10,5 @@ interface IProofService
     public function retrieveProof(array $records): Proof;
     public function verifyRecords(array $records, string $network): int;
     public function verifyProof(Proof $proof): Record;
-    public function validateProof(Record $root, string $network): int;
+    public function validateRoot(Record $root, string $network): int;
 }

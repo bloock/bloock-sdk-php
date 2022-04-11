@@ -137,29 +137,31 @@ final class BloockClient
     }
 
     /**
-     * It retrieves a proof for the specified list of Anchor using getProof, verifies it using verifyProof and checks if it's included in blockchain with validateRoot.
-     *
-     * @param  mixed list of records to validate
-     * @return Record The integrity proof's root Record
-     * @throws InvalidArgumentException Informs that the input is empty.
-     * @throws HttpRequestException Error return by Bloock's API.
-     * @throws ProofNotFoundException Proof not found.
-     * @throws Web3Exception Error connecting to blockchain.
-     */
-    public function verifyRecords(array $records, string $network): int
-    {
-        return DependencyInjection::getProofService()->verifyRecords($records, $network);
-    }
-
-    /**
      * Checks if the integrity Proof is currently included in the blockchain.
      * 
      * @param  Record An integrity Proof's root Record.
      * @param  string blockchain network where the records will be validated.
      * @return int A number representing the timestamp in milliseconds when the anchor was registered in Blockchain.
      * @throws Web3Exception Error connecting to blockchain.
-    */
-    public function validateProof(Record $root, string $network): int {
-        return DependencyInjection::getProofService()->validateProof($root, $network);
+     */
+    public function validateRoot(Record $root, string $network): int
+    {
+        return DependencyInjection::getProofService()->validateRoot($root, $network);
+    }
+
+    /**
+     * It retrieves a proof for the specified list of Anchor using getProof, verifies it using verifyProof and checks if it's included in blockchain with validateRoot.
+     *
+     * @param  mixed List of records to validate
+     * @param string|null Optional network to verify from. 
+     * @return Record The integrity proof's root Record
+     * @throws InvalidArgumentException Informs that the input is empty.
+     * @throws HttpRequestException Error return by Bloock's API.
+     * @throws ProofNotFoundException Proof not found.
+     * @throws Web3Exception Error connecting to blockchain.
+     */
+    public function verifyRecords(array $records, string $network = null): int
+    {
+        return DependencyInjection::getProofService()->verifyRecords($records, $network);
     }
 }

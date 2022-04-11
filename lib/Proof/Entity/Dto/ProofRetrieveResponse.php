@@ -3,6 +3,7 @@
 namespace Bloock\Proof\Entity\Dto;
 
 use Bloock\Anchor\Entity\Network;
+use Bloock\Proof\Entity\ProofAnchor;
 
 class ProofRetrieveResponse
 {
@@ -11,6 +12,7 @@ class ProofRetrieveResponse
     public $depth;
     public $bitmap;
     public $root;
+    public $anchor;
 
     public function __construct(array $response)
     {
@@ -19,5 +21,6 @@ class ProofRetrieveResponse
         $this->depth = $response["depth"];
         $this->bitmap = $response["bitmap"];
         $this->root = $response["root"];
+        $this->anchor = $response["anchor"];
     }
 }
