@@ -32,7 +32,7 @@ final class AcceptanceTest extends TestCase
 
         $proof = $sdk->getProof($records);
         $root = $sdk->verifyProof($proof);
-        $timestamp = $sdk->validateProof($root, Network::BLOOCK_CHAIN);
+        $timestamp = $sdk->validateRoot($root, Network::BLOOCK_CHAIN);
 
         $this->assertTrue($timestamp > 0);
 

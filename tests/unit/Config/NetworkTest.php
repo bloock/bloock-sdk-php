@@ -12,8 +12,8 @@ final class NetworkTest extends TestCase
      */
     public function test_select_network()
     {
-        $network = Network::ETHEREUM_RINKEBY;
-        $network = Network::SelectNetwork($network);
+        $networks = array(array('name'=>Network::ETHEREUM_RINKEBY));
+        $network = Network::SelectNetwork($networks);
         $this->assertEquals("ethereum_rinkeby", $network);
     }
     /**
@@ -21,8 +21,8 @@ final class NetworkTest extends TestCase
      */
     public function test_select_network_invalid_input_network()
     {
-        $network = "should default to mainnet";
-        $network = Network::SelectNetwork($network);
+        $networks = array(array('name'=>"should default to mainnet"));
+        $network = Network::SelectNetwork($networks);
         $this->assertEquals("ethereum_mainnet", $network);
     }
 }
