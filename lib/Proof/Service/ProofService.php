@@ -9,6 +9,7 @@ use Bloock\Proof\Entity\Exception\ProofNotFoundException;
 use Bloock\Proof\Entity\Proof;
 use Bloock\Proof\Repository\IProofRepository;
 use Bloock\Record\Entity\Exception\InvalidRecordException;
+use Bloock\Record\Entity\Exception\InvalidRecordTypeException;
 use Bloock\Record\Entity\Record;
 use InvalidArgumentException;
 
@@ -32,6 +33,18 @@ final class ProofService implements IProofService
                 throw new InvalidRecordException();
             }
         }
+        
+        if (count($records) == 1) {
+            try {
+                $document = $records[0]->retrieve();
+                if ($document->getProof() != null) {
+                    return $proof;
+                }
+                $documentNoProof = $document;
+            } catch (InvalidRecordTypeException $e) {
+                //empty catch block (record has no document)
+            }
+        }
 
         $sorted = Record::sort($records);
 
@@ -45,13 +58,18 @@ final class ProofService implements IProofService
             $response->anchor['status']
         );
 
-        return new Proof(
+        $proof = new Proof(
             $response->leaves,
             $response->nodes,
             $response->depth,
             $response->bitmap,
             $anchor
         );
+
+        if (count($sorted) == 1 && isset($documentNoProof)) {
+            $documentNoProof->setProof($proof);
+        }
+        return $proof;
     }
 
     public function verifyRecords(array $records, string $network = null): int
