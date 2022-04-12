@@ -182,28 +182,6 @@ final class AcceptanceTest extends TestCase
     /**
      * @group e2e
      */
-    public function test_retrieve_proof_with_document_many_records()
-    {
-        $sdk = $this->getClient();
-
-        $json = $this->generateRandomJSON(4);
-        $json2 = $this->generateRandomJSON(3);
-        $recordsWithDocument = array(Record::fromJSON($json), Record::fromJSON($json2));
-
-        $sendReceipts = $sdk->sendRecords($recordsWithDocument);
-        if ($sendReceipts == null) {
-            $this->fail("Failed to write message");
-        }
-        $sdk->waitAnchor($sendReceipts[0]->anchor, 60000);
-
-        $proof = $sdk->getProof($recordsWithDocument);
-
-        $this->assertTrue($recordsWithDocument[0]->getProof() == null);
-        $this->assertTrue($proof != null);
-    }
-    /**
-     * @group e2e
-     */
     // public function test_wait_anchor_non_existing_anchor()
     // {
     //     $sdk = $this->getClient();
