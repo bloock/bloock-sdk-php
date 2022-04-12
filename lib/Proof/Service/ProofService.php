@@ -22,7 +22,7 @@ final class ProofService implements IProofService
         $this->proofRepository = $proofRepository;
     }
 
-    public function retrieveProof(array $records): Proof
+    public function retrieveProof(array &$records): Proof
     {
         if (count($records) <= 0) {
             throw new InvalidArgumentException();
@@ -35,14 +35,9 @@ final class ProofService implements IProofService
         }
         
         if (count($records) == 1) {
-            try {
-                $document = $records[0]->retrieve();
-                if ($document->getProof() != null) {
-                    return $proof;
-                }
-                $documentNoProof = $document;
-            } catch (InvalidRecordTypeException $e) {
-                //empty catch block (record has no document)
+            $proof = $records[0]->getProof();
+            if ($proof != null) {
+                return $proof;
             }
         }
 
@@ -66,8 +61,8 @@ final class ProofService implements IProofService
             $anchor
         );
 
-        if (count($sorted) == 1 && isset($documentNoProof)) {
-            $documentNoProof->setProof($proof);
+        if (count($sorted) == 1) {
+            $sorted[0]->setProof($proof);
         }
         return $proof;
     }
