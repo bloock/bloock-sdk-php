@@ -7,6 +7,9 @@ class Configuration
     public $HOST = "";
     public $WAIT_MESSAGE_INTERVAL_FACTOR = 2;
     public $WAIT_MESSAGE_INTERVAL_DEFAULT = 1000;
+    public const KEY_TYPE_ALGORITHM = 'EC';
+    public const ELLIPTIC_CURVE_KEY = 'secp256k1';
+    public const SIGNATURE_ALGORITHM = 'ES256K';
 }
 
 class NetworkConfiguration
