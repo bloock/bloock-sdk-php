@@ -41,11 +41,11 @@ final class AnchorRepositoryTest extends TestCase
         $this->configServiceMock->method('getApiBaseUrl')
             ->willReturn('api url');
 
-        $response = $this->anchorRepository->getAnchor(1);
-        $this->assertEquals(1, $response->anchorId);
-        $this->assertEquals(['block_root'], $response->blockRoots);
-        $this->assertEquals([], $response->networks);
-        $this->assertEquals('root', $response->root);
-        $this->assertEquals('Success', $response->status);
+        $anchor = $this->anchorRepository->getAnchor(1);
+        $this->assertEquals(1, $anchor->id);
+        $this->assertEquals(['block_root'], $anchor->blockRoots);
+        $this->assertEquals([], $anchor->networks);
+        $this->assertEquals('root', $anchor->root);
+        $this->assertEquals('Success', $anchor->status);
     }
 }

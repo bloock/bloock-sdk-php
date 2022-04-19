@@ -37,13 +37,7 @@ final class AnchorServiceTest extends TestCase
     public function test_get_anchor_okay()
     {
         $this->anchorRepositoryMock->method('getAnchor')
-            ->willReturn(new AnchorRetrieveResponse(array(
-                'anchor_id' => 1,
-                'block_roots' => ['block_root'],
-                'networks' => [],
-                'root' => 'root',
-                'status' => 'Success'
-            )));
+            ->willReturn(new Anchor(1, ['block_root'], [], 'root', 'Success'));
 
         $response = $this->anchorService->getAnchor(1);
         $this->assertEquals(1, $response->id);
@@ -107,21 +101,9 @@ final class AnchorServiceTest extends TestCase
     {
         if ($this->counter < $this->maxCount) {
             $this->counter += 1;
-            return new AnchorRetrieveResponse(array(
-                'anchor_id' => 1,
-                'block_roots' => [],
-                'networks' => [],
-                'root' => 'root',
-                'status' => 'Pending'
-            ));
+            return new Anchor(1, [], [], 'root', 'Pending');
         }
 
-        return new AnchorRetrieveResponse(array(
-            'anchor_id' => 1,
-            'block_roots' => ['block_root'],
-            'networks' => [],
-            'root' => 'root',
-            'status' => 'Success'
-        ));
+        return new Anchor(1, ['block_root'], [], 'root', 'Success');
     }
 }
