@@ -6,6 +6,7 @@ use Bloock\Infrastructure\Hashing;
 use Bloock\Infrastructure\Hashing\Keccak;
 use Bloock\Record\Entity\Document\Document;
 use Bloock\Shared\Utils;
+use Bloock\Proof\Entity\Proof;
 use Bloock\Record\Entity\Document\JsonDocument;
 use Bloock\Record\Entity\Exception\InvalidRecordTypeException;
 
@@ -211,6 +212,19 @@ class Record
     private static function getHashingAlgorithm(): Hashing
     {
         return Record::$hashingAlgorithm;
+    }
+
+    public function setProof(Proof $proof):void {
+        if (isset($this->document)) {
+            $this->document->setProof($proof);
+        }
+    }
+
+    public function getProof(): ?Proof {
+        if (isset($this->document)) {
+            return $this->document->getProof();
+        }
+        return null;
     }
 }
 

@@ -9,6 +9,7 @@ use Bloock\Proof\Entity\Exception\ProofNotFoundException;
 use Bloock\Proof\Entity\Proof;
 use Bloock\Proof\Repository\IProofRepository;
 use Bloock\Record\Entity\Exception\InvalidRecordException;
+use Bloock\Record\Entity\Exception\InvalidRecordTypeException;
 use Bloock\Record\Entity\Record;
 use InvalidArgumentException;
 
@@ -21,7 +22,7 @@ final class ProofService implements IProofService
         $this->proofRepository = $proofRepository;
     }
 
-    public function retrieveProof(array $records): Proof
+    public function retrieveProof(array &$records): Proof
     {
         if (count($records) <= 0) {
             throw new InvalidArgumentException();
@@ -30,6 +31,13 @@ final class ProofService implements IProofService
         foreach ($records as $record) {
             if (Record::isValid($record) == false) {
                 throw new InvalidRecordException();
+            }
+        }
+        
+        if (count($records) == 1) {
+            $proof = $records[0]->getProof();
+            if ($proof != null) {
+                return $proof;
             }
         }
 
@@ -45,13 +53,18 @@ final class ProofService implements IProofService
             $response->anchor['status']
         );
 
-        return new Proof(
+        $proof = new Proof(
             $response->leaves,
             $response->nodes,
             $response->depth,
             $response->bitmap,
             $anchor
         );
+
+        if (count($sorted) == 1) {
+            $sorted[0]->setProof($proof);
+        }
+        return $proof;
     }
 
     public function verifyRecords(array $records, string $network = null): int

@@ -4,9 +4,11 @@
 namespace Bloock\Tests;
 
 use Bloock\BloockClient;
+use Bloock\Anchor\Entity\Anchor;
 use Bloock\Config\Entity\Network;
 use Bloock\Config\Entity\NetworkConfiguration;
 use Bloock\Infrastructure\Http\Exception\HttpException;
+use Bloock\Proof\Entity\Proof;
 use Bloock\Record\Entity\Exception\InvalidRecordException;
 use Bloock\Record\Entity\Record;
 use PHPUnit\Framework\TestCase;
@@ -32,7 +34,7 @@ final class AcceptanceTest extends TestCase
 
         $proof = $sdk->getProof($records);
         $root = $sdk->verifyProof($proof);
-        $timestamp = $sdk->validateProof($root, Network::BLOOCK_CHAIN);
+        $timestamp = $sdk->validateRoot($root, Network::BLOOCK_CHAIN);
 
         $this->assertTrue($timestamp > 0);
 
@@ -142,6 +144,44 @@ final class AcceptanceTest extends TestCase
     /**
      * @group e2e
      */
+    public function test_retrieve_proof_with_document_one_record_without_proof()
+    {
+        $sdk = $this->getClient();
+
+        $json = $this->generateRandomJSON(4);
+        $recordsWithDocument = array(Record::fromJSON($json));
+
+        $sendReceipts = $sdk->sendRecords($recordsWithDocument);
+        if ($sendReceipts == null) {
+            $this->fail("Failed to write message");
+        }
+        $sdk->waitAnchor($sendReceipts[0]->anchor, 60000);
+
+        $proof = $sdk->getProof($recordsWithDocument);
+
+        $this->assertTrue($proof === $recordsWithDocument[0]->getProof());
+    }
+    /**
+     * @group e2e
+     */
+    public function test_retrieve_proof_with_document_one_record_with_proof()
+    {
+        $sdk = $this->getClient();
+
+        $json = $this->generateRandomJSON(2);
+        $recordsWithDocument = array(Record::fromJSON($json));
+
+        $proof = new Proof(array('leave1'), array('node1'), 'depth', 'bitmap', new Anchor(1, array(), array(), '', 'pending'));
+
+        $recordsWithDocument[0]->setProof($proof);
+
+        $proof = $sdk->getProof($recordsWithDocument);
+
+        $this->assertTrue($proof === $recordsWithDocument[0]->getProof());
+    }
+    /**
+     * @group e2e
+     */
     // public function test_wait_anchor_non_existing_anchor()
     // {
     //     $sdk = $this->getClient();
@@ -152,6 +192,13 @@ final class AcceptanceTest extends TestCase
     /**
      * @group e2e
      */
+
+    private function generateRandomJSON(): array {
+        $json = [];
+        $json['entry1'] = $this->generateRandomString();
+        $json['entry2'] = $this->generateRandomString();
+        return $json;
+    }
 
     private function generateRandomString($length = 64): string
     {
