@@ -2,6 +2,7 @@
 
 namespace Bloock\Proof\Repository;
 
+use Bloock\Anchor\Entity\Anchor;
 use Bloock\Config\Service\ConfigService;
 use Bloock\Config\Service\IConfigService;
 use Bloock\Infrastructure\Blockchain;
@@ -45,7 +46,6 @@ final class ProofRepository implements IProofRepository
             $response->nodes,
             $response->depth,
             $response->bitmap,
-            $response->root,
             $anchor
         );
     }
