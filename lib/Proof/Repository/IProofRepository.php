@@ -8,7 +8,7 @@ use Bloock\Record\Entity\Record;
 
 interface IProofRepository
 {
-    public function retrieveProof(array $records): ProofRetrieveResponse;
+    public function retrieveProof(array $records): Proof;
     public function verifyProof(Proof $proof): Record;
     public function validateRoot(string $network, Record $root): int;
 }

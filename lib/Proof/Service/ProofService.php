@@ -43,23 +43,7 @@ final class ProofService implements IProofService
 
         $sorted = Record::sort($records);
 
-        $response =  $this->getProofRepository()->retrieveProof($sorted);
-
-        $anchor = new Anchor(
-            $response->anchor['anchor_id'],
-            $response->anchor['blockRoots'] ?? [],
-            $response->anchor['networks'],
-            $response->anchor['root'],
-            $response->anchor['status']
-        );
-
-        $proof = new Proof(
-            $response->leaves,
-            $response->nodes,
-            $response->depth,
-            $response->bitmap,
-            $anchor
-        );
+        $proof =  $this->getProofRepository()->retrieveProof($sorted);
 
         if (count($sorted) == 1) {
             $sorted[0]->setProof($proof);

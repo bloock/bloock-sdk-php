@@ -4,10 +4,8 @@
 namespace Bloock\Tests;
 
 use Bloock\Anchor\Entity\Anchor;
-use Bloock\Anchor\Entity\Dto\AnchorRetrieveResponse;
 use Bloock\Proof\Service\IProofService;
 use Bloock\Proof\Service\ProofService;
-use Bloock\Proof\Entity\Dto\ProofRetrieveResponse;
 use Bloock\Proof\Entity\Dto\ProofWriteResponse;
 use Bloock\Proof\Entity\Exception\InvalidProofException;
 use Bloock\Proof\Entity\Proof;
@@ -33,23 +31,10 @@ final class ProofServiceTest extends TestCase
      */
     public function test_get_proofs_okay_from_string()
     {
-        $mockAnchor = array(
-            'anchor_id' => 1,
-            'blockRoots' => null,
-            'networks' => [''],
-            'block_roots' => [''], 
-            'root' => '',
-            'status' => 'pending');
+        $mockAnchor = new Anchor(1, [], [], 'c6372dab6a48637173a457e3ae0c54a500bb50346e847eccf2b818ade94d8ccf', 'pending');
+
         $this->proofRepositoryMock->method('retrieveProof')
-            ->willReturn(new ProofRetrieveResponse(array(
-                    'leaves' => ['leaf1'],
-                    'nodes' => ['node1'],
-                    'depth' => 'depth',
-                    'bitmap' => 'bitmap',
-                    'root' => 'root',
-                    'anchor' => $mockAnchor
-                )
-            ));       
+                ->willReturn(new Proof(['leaf1'], ['node1'], 'depth', 'bitmap', $mockAnchor));
         
         $records = array(Record::fromString('myrecord'));
         $response = $this->proofService->retrieveProof($records);
@@ -63,23 +48,10 @@ final class ProofServiceTest extends TestCase
      */
     public function test_get_proofs_okay_from_json_with_proof()
     {
-        $mockAnchor = array(
-            'anchor_id' => 1,
-            'blockRoots' => null,
-            'networks' => [''],
-            'block_roots' => [''], 
-            'root' => '',
-            'status' => 'pending');
+        $mockAnchor = new Anchor(1, [], [], 'c6372dab6a48637173a457e3ae0c54a500bb50346e847eccf2b818ade94d8ccf', 'pending');
+
         $this->proofRepositoryMock->method('retrieveProof')
-            ->willReturn(new ProofRetrieveResponse(array(
-                    'leaves' => ['leaf1'],
-                    'nodes' => ['node1'],
-                    'depth' => 'depth',
-                    'bitmap' => 'bitmap',
-                    'root' => 'root',
-                    'anchor' => $mockAnchor
-                )
-            ));
+                ->willReturn(new Proof(['leaf1'], ['node1'], 'depth', 'bitmap', $mockAnchor));
         $mockProof = new Proof(['leaf1'], ['node1'], 'depth', 'bitmap');
         
         $records = array(Record::fromJSON(array('hello' => 'world')));
@@ -95,23 +67,10 @@ final class ProofServiceTest extends TestCase
      */
     public function test_get_proofs_okay_from_json_without_proof()
     {
-        $mockAnchor = array(
-            'anchor_id' => 1,
-            'blockRoots' => null,
-            'networks' => [''],
-            'block_roots' => [''], 
-            'root' => '',
-            'status' => 'pending');
+        $mockAnchor = new Anchor(1, [], [], 'c6372dab6a48637173a457e3ae0c54a500bb50346e847eccf2b818ade94d8ccf', 'pending');
+
         $this->proofRepositoryMock->method('retrieveProof')
-            ->willReturn(new ProofRetrieveResponse(array(
-                    'leaves' => ['leaf1'],
-                    'nodes' => ['node1'],
-                    'depth' => 'depth',
-                    'bitmap' => 'bitmap',
-                    'root' => 'root',
-                    'anchor' => $mockAnchor
-                )
-            ));       
+                ->willReturn(new Proof(['leaf1'], ['node1'], 'depth', 'bitmap', $mockAnchor));      
         
         $records = array(Record::fromJSON(array('hello' => 'world')));
         $response = $this->proofService->retrieveProof($records);

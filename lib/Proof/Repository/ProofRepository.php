@@ -2,6 +2,7 @@
 
 namespace Bloock\Proof\Repository;
 
+use Bloock\Anchor\Entity\Anchor;
 use Bloock\Config\Service\ConfigService;
 use Bloock\Config\Service\IConfigService;
 use Bloock\Infrastructure\Blockchain;
@@ -26,11 +27,27 @@ final class ProofRepository implements IProofRepository
         $this->configService = $configService;
     }
 
-    public function retrieveProof(array $records): ProofRetrieveResponse
+    public function retrieveProof(array $records): Proof
     {
         $url = $this->getConfigService()->getApiBaseUrl() . "/core/proof";
         $body = new ProofRetrieveRequest($records);
-        return new ProofRetrieveResponse($this->getHttpClient()->post($url, $body));
+        $response = new ProofRetrieveResponse($this->getHttpClient()->post($url, $body));
+
+        $anchor = new Anchor(
+            $response->anchor['anchor_id'],
+            $response->anchor['blockRoots'] ?? [],
+            $response->anchor['networks'],
+            $response->anchor['root'],
+            $response->anchor['status']
+        );
+
+        return new Proof(
+            $response->leaves,
+            $response->nodes,
+            $response->depth,
+            $response->bitmap,
+            $anchor
+        );
     }
 
     public function verifyProof(Proof $proof): Record
