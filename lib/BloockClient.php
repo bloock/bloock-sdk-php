@@ -13,6 +13,8 @@ use Bloock\Proof\Entity\Proof;
 use Bloock\Record\Entity\Record;
 use Bloock\Proof\Service\ProofService;
 
+error_reporting(E_ALL ^ E_DEPRECATED);
+
 /**
  * Entrypoint to the Bloock SDK:
  *    This SDK offers all the features available in the Bloock Toolset:
@@ -119,9 +121,21 @@ final class BloockClient
      * @throws InvalidRecordException At least one of the records sent was not well formed.
      * @throws HttpRequestException Error return by Bloock's API.
      */
-    public function getProof(array $records): Proof
+    public function getProof(array &$records): Proof
     {
         return DependencyInjection::getProofService()->retrieveProof($records);
+    }
+
+    /**
+     * Verifies if the specified integrity Proof is valid.
+     *
+     * @param  Proof Proof to validate.
+     * @return Record Integrity proof's root record.
+     * @throws ProofNotFoundException Proof not found.
+     */
+    public function verifySignatures(array $records): bool
+    {
+        return DependencyInjection::getProofService()->verifySignatures($records);
     }
 
     /**

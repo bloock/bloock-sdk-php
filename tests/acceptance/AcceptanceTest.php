@@ -169,31 +169,25 @@ final class AcceptanceTest extends TestCase
         $sdk = $this->getClient();
 
         $json = $this->generateRandomJSON(2);
-        $recordsWithDocument = array(Record::fromJSON($json));
+        $records = array(Record::fromJSON($json));
 
-        $proof = new Proof(array('leave1'), array('node1'), 'depth', 'bitmap', new Anchor(1, array(), array(), '', 'pending'));
+        $sendReceipts = $sdk->sendRecords($records);
+        if ($sendReceipts == null) {
+            $this->fail("Failed to write message");
+        }
 
-        $recordsWithDocument[0]->setProof($proof);
+        $sdk->waitAnchor($sendReceipts[0]->anchor, 60000);
 
-        $proof = $sdk->getProof($recordsWithDocument);
+        $proof = $sdk->getProof($records);
 
-        $this->assertTrue($proof === $recordsWithDocument[0]->getProof());
+        $this->assertEquals($proof, $records[0]->getProof());
     }
     /**
      * @group e2e
      */
-    // public function test_wait_anchor_non_existing_anchor()
-    // {
-    //     $sdk = $this->getClient();
 
-    //     $this->expectException(WaitAnchorTimeoutException::class);
-    //     $sdk->waitAnchor(666666666666666666, 3000);
-    // }
-    /**
-     * @group e2e
-     */
-
-    private function generateRandomJSON(): array {
+    private function generateRandomJSON(): array
+    {
         $json = [];
         $json['entry1'] = $this->generateRandomString();
         $json['entry2'] = $this->generateRandomString();
@@ -214,10 +208,8 @@ final class AcceptanceTest extends TestCase
     private function getClient(): BloockClient
     {
         $apiKey = getenv("API_KEY");
-        $apiHost = getenv("API_HOST");
 
         $client = new BloockClient($apiKey);
-        $client->setApiHost($apiHost);
         return $client;
     }
 }

@@ -9,6 +9,7 @@ interface IProofService
 {
     public function retrieveProof(array &$records): Proof;
     public function verifyRecords(array $records, string $network): int;
+    public function verifySignatures(array $records): bool;
     public function verifyProof(Proof $proof): Record;
     public function validateRoot(Record $root, string $network): int;
 }
