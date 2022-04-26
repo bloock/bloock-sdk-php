@@ -33,7 +33,7 @@ final class ProofService implements IProofService
                 throw new InvalidRecordException();
             }
         }
-        
+
         if (count($records) == 1) {
             $proof = $records[0]->getProof();
             if ($proof != null) {
@@ -43,23 +43,7 @@ final class ProofService implements IProofService
 
         $sorted = Record::sort($records);
 
-        $response =  $this->getProofRepository()->retrieveProof($sorted);
-
-        $anchor = new Anchor(
-            $response->anchor['anchor_id'],
-            $response->anchor['blockRoots'] ?? [],
-            $response->anchor['networks'],
-            $response->anchor['root'],
-            $response->anchor['status']
-        );
-
-        $proof = new Proof(
-            $response->leaves,
-            $response->nodes,
-            $response->depth,
-            $response->bitmap,
-            $anchor
-        );
+        $proof =  $this->getProofRepository()->retrieveProof($sorted);
 
         if (count($sorted) == 1) {
             $sorted[0]->setProof($proof);

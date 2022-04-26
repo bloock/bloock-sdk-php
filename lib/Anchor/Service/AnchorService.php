@@ -34,8 +34,7 @@ final class AnchorService implements IAnchorService
             throw new InvalidArgumentException();
         }
 
-        $response = $this->getAnchorRepository()->getAnchor($id);
-        $anchor = new Anchor($response->anchorId, $response->blockRoots, $response->networks, $response->root, $response->status);
+        $anchor = $this->getAnchorRepository()->getAnchor($id);
         if ($anchor == null) {
             throw new AnchorNotFoundException();
         }

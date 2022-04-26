@@ -139,7 +139,7 @@ final class BloockClient
     }
 
     /**
-     * Checks if the integrity Proof is currently included in the blockchain.
+     * Validates if the root is currently included in the blockchain.
      * 
      * @param  Record An integrity Proof's root Record.
      * @param  string blockchain network where the records will be validated.
@@ -152,11 +152,11 @@ final class BloockClient
     }
 
     /**
-     * It retrieves a proof for the specified list of Anchor using getProof, verifies it using verifyProof and checks if it's included in blockchain with validateRoot.
+     * It retrieves a proof for the specified list of Anchor using getProof and verifies it using verifyProof and validateRoot.
      *
      * @param  mixed List of records to validate
      * @param string|null Optional network to verify from. 
-     * @return Record The integrity proof's root Record
+     * @return int A number representing the timestamp in milliseconds when the anchor was registered in Blockchain
      * @throws InvalidArgumentException Informs that the input is empty.
      * @throws HttpRequestException Error return by Bloock's API.
      * @throws ProofNotFoundException Proof not found.
