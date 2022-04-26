@@ -193,7 +193,8 @@ final class AcceptanceTest extends TestCase
      * @group e2e
      */
 
-    private function generateRandomJSON(): array {
+    private function generateRandomJSON(): array
+    {
         $json = [];
         $json['entry1'] = $this->generateRandomString();
         $json['entry2'] = $this->generateRandomString();
@@ -214,10 +215,8 @@ final class AcceptanceTest extends TestCase
     private function getClient(): BloockClient
     {
         $apiKey = getenv("API_KEY");
-        $apiHost = getenv("API_HOST");
 
         $client = new BloockClient($apiKey);
-        $client->setApiHost($apiHost);
         return $client;
     }
 }

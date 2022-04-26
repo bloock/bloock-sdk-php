@@ -118,13 +118,6 @@ class Record
      */
     public static function fromJSON(string|array $src): Record
     {
-
-        if (is_string($src)) {
-            $src = json_decode($src, true);
-            if ($src == false) {
-                throw new InvalidRecordException();
-            }
-        }
         $json = new JSONDocument($src);
         return Record::fromDocument($json);
     }

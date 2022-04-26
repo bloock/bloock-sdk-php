@@ -2,6 +2,7 @@
 
 namespace Bloock\Record\Entity\Document;
 
+use Bloock\Record\Entity\Exception\InvalidJsonException;
 use Bloock\Shared\Utils;
 
 class JsonDocument extends Document
@@ -11,13 +12,20 @@ class JsonDocument extends Document
 
     protected array $source;
 
-    function __construct($src)
+    function __construct(string|array $src)
     {
         parent::__construct($src);
     }
 
     protected function setup($src): void
     {
+        if (is_string($src)) {
+            $src = json_decode($src, true);
+            if ($src == false) {
+                throw new InvalidJsonException();
+            }
+        }
+
         $this->source = $src;
     }
 
@@ -46,10 +54,15 @@ class JsonDocument extends Document
         return null;
     }
 
+    public function getPayload(): array
+    {
+        return json_decode($this->payload, true);
+    }
+
     public function getPayloadBytes(): array
     {
         if (isset($this->payload)) {
-            $json = Utils::stringify($this->payload);
+            $json = Utils::stringify(json_decode($this->payload, true));
             return Utils::stringToBytes($json);
         }
 
@@ -66,15 +79,18 @@ class JsonDocument extends Document
         return array();
     }
 
-    protected function buildFile(array $metadata): array
+    protected function buildFile(array $metadata): string
     {
+        $output = null;
         if (count($metadata) > 0) {
-            return array(
+            $output = array(
                 JsonDocument::DATA_KEY => $this->data,
                 JsonDocument::METADATA_KEY => $metadata
             );
         } else {
-            return $this->data;
+            $output = $this->data;
         }
+
+        return json_encode($output);
     }
 }

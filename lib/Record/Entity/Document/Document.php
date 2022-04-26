@@ -90,7 +90,7 @@ abstract class Document
         array_push($this->signatures, ...$signatures);
     }
 
-    public function build()
+    public function build(): mixed
     {
         $metadata = [];
 
@@ -102,8 +102,8 @@ abstract class Document
             $metadata['signatures'] = $this->signatures;
         }
 
-        return json_encode($this->buildFile($metadata));
+        return $this->buildFile($metadata);
     }
 
-    protected abstract function buildFile(array $metadata);
+    protected abstract function buildFile(array $metadata): mixed;
 }
