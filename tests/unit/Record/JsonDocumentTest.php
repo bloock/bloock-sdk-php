@@ -3,6 +3,7 @@
 
 namespace Bloock\Tests;
 
+use Bloock\Infrastructure\Signature;
 use Bloock\Proof\Entity\Proof;
 use Bloock\Record\Entity\Document\JsonDocument;
 use PHPUnit\Framework\TestCase;
@@ -53,7 +54,7 @@ final class JsonDocumentTest extends TestCase
         $this->assertEquals($file->getData(), $file2->getData());
         $this->assertEquals($file->getPayload(), $file2->getPayload());
         $this->assertEquals($file->getProof(), $file2->getProof());
-        $this->assertEquals($file->getSignature(), $file2->getSignature());
+        $this->assertEquals($file->getSignatures(), $file2->getSignatures());
     }
 
     /**
@@ -73,7 +74,7 @@ final class JsonDocumentTest extends TestCase
         $this->assertEquals($file->getData(), $file2->getData());
         $this->assertEquals($file->getPayload(), $file2->getPayload());
         $this->assertEquals($file->getProof(), $file2->getProof());
-        $this->assertEquals($file->getSignature(), $file2->getSignature());
+        $this->assertEquals($file->getSignatures(), $file2->getSignatures());
     }
 
     /**
@@ -102,14 +103,13 @@ final class JsonDocumentTest extends TestCase
         $json = $this->content;
         $file = new JSONDocument($json);
 
-        $signature = array('signature1');
-
-        $file->setSignature($signature);
-        $this->assertEquals($file->getSignature(), $signature);
+        $signature = array(new Signature("signature1", array()));
+        $file->addSignature(...$signature);
+        $this->assertEquals($file->getSignatures(), $signature);
 
         $file2 = new JSONDocument($file->build());
 
-        $this->assertEquals($file2->getSignature(), $signature);
+        $this->assertEquals($file2->getSignatures(), $signature);
     }
 
     /**
@@ -120,18 +120,18 @@ final class JsonDocumentTest extends TestCase
         $json = $this->content;
         $file = new JSONDocument($json);
 
-        $signature = array('signature1');
-        $file->setSignature($signature);
+        $signature = array(new Signature("signature1", array()));
+        $file->addSignature(...$signature);
 
         $proof = new Proof(array('leave1'), array('node1'), 'depth', 'bitmap');
         $file->setProof($proof);
 
-        $this->assertEquals($file->getSignature(), $signature);
+        $this->assertEquals($file->getSignatures(), $signature);
         $this->assertEquals($file->getProof(), $proof);
 
         $file2 = new JSONDocument($file->build());
 
-        $this->assertEquals($file2->getSignature(), $signature);
+        $this->assertEquals($file2->getSignatures(), $signature);
         $this->assertEquals($file2->getProof(), $proof);
     }
 }

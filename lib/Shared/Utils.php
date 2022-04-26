@@ -80,4 +80,23 @@ final class Utils
     {
         return ctype_xdigit($string);
     }
+
+    public static function base64url_encode(string $data)
+    {
+        return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+    }
+
+    public static function base64url_decode(string $data)
+    {
+        return base64_decode(strtr($data, '-_', '+/'));
+    }
+
+    public static function base64url_encode_bytes(array $data)
+    {
+        $string = '';
+        for ($i = 0; $i < count($data); $i++) {
+            $string = $string . pack('C', $data[$i]);
+        }
+        return rtrim(strtr(base64_encode($string), '+/', '-_'), '=');
+    }
 }

@@ -4,11 +4,14 @@ namespace Bloock\Record\Entity;
 
 use Bloock\Infrastructure\Hashing;
 use Bloock\Infrastructure\Hashing\Keccak;
+use Bloock\Infrastructure\Signature\JWSClient;
 use Bloock\Record\Entity\Document\Document;
 use Bloock\Shared\Utils;
 use Bloock\Proof\Entity\Proof;
 use Bloock\Record\Entity\Document\JsonDocument;
+use Bloock\Record\Entity\Exception\InvalidRecordException;
 use Bloock\Record\Entity\Exception\InvalidRecordTypeException;
+use Bloock\Record\Entity\Exception\NoSignatureFoundException;
 
 /**
  * Record is the class in charge of computing and storing the
@@ -22,10 +25,12 @@ class Record
     private Document $document;
 
     public static $hashingAlgorithm;
+    private $signingClient;
 
     private function __construct(string $hash, Document $document = null)
     {
         $this->hash = $hash;
+        $this->signingClient = new JWSClient();
 
         if (isset($document)) {
             $this->document = $document;
@@ -111,8 +116,15 @@ class Record
      * @param  array array containing the json values
      * @return Record Record object of the hashed input.
      */
-    public static function fromJSON(array $src): Record
+    public static function fromJSON(string|array $src): Record
     {
+
+        if (is_string($src)) {
+            $src = json_decode($src, true);
+            if ($src == false) {
+                throw new InvalidRecordException();
+            }
+        }
         $json = new JSONDocument($src);
         return Record::fromDocument($json);
     }
@@ -184,7 +196,7 @@ class Record
      *
      * @return any A new sversion of the original data in the same format
      */
-    public function retrieve()
+    public function retrieve(): string|array
     {
         if (isset($this->document)) {
             return $this->document->build();
@@ -201,7 +213,31 @@ class Record
      */
     public function sign(string $privateKey): Record
     {
-        return Record::fromHash($this->hash);
+        if (isset($this->document)) {
+            $signature = $this->signingClient->sign($this->document->getDataBytes(), $privateKey);
+            $this->document->addSignature($signature);
+
+            return new Record(
+                Record::$hashingAlgorithm->generateHash(Utils::bytesToString($this->document->getPayloadBytes())),
+                $this->document
+            );
+        }
+
+        throw new InvalidRecordTypeException();
+    }
+
+    public function verify(): bool
+    {
+        if (isset($this->document)) {
+            $signatures = $this->document->getSignatures();
+            if (isset($signatures)) {
+                return $this->signingClient->verify($this->document->getDataBytes(), ...$signatures);
+            } else {
+                throw new NoSignatureFoundException();
+            }
+        }
+
+        throw new InvalidRecordTypeException();
     }
 
     public function getUint8ArrayHash(): array
@@ -214,13 +250,15 @@ class Record
         return Record::$hashingAlgorithm;
     }
 
-    public function setProof(Proof $proof):void {
+    public function setProof(Proof $proof): void
+    {
         if (isset($this->document)) {
             $this->document->setProof($proof);
         }
     }
 
-    public function getProof(): ?Proof {
+    public function getProof(): ?Proof
+    {
         if (isset($this->document)) {
             return $this->document->getProof();
         }

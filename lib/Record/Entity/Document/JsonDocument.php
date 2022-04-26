@@ -11,15 +11,18 @@ class JsonDocument extends Document
 
     protected array $source;
 
-    function __construct($src) {
+    function __construct($src)
+    {
         parent::__construct($src);
     }
 
-    protected function setup($src): void {
+    protected function setup($src): void
+    {
         $this->source = $src;
     }
 
-    protected function fetchMetadata(string $key) {
+    protected function fetchMetadata(string $key)
+    {
         if (isset($this->source) && isset($this->source[JsonDocument::METADATA_KEY])) {
             $metadata = $this->source[JsonDocument::METADATA_KEY];
 
@@ -30,9 +33,10 @@ class JsonDocument extends Document
 
         return null;
     }
-    protected function fetchData() {
+    protected function fetchData()
+    {
         if (isset($this->source)) {
-            if (isset($this->source[JsonDocument::DATA_KEY]) ) {
+            if (isset($this->source[JsonDocument::DATA_KEY])) {
                 return $this->source[JsonDocument::DATA_KEY];
             } else {
                 return $this->source;
@@ -41,8 +45,9 @@ class JsonDocument extends Document
 
         return null;
     }
-    
-    public function getPayloadBytes(): array {
+
+    public function getPayloadBytes(): array
+    {
         if (isset($this->payload)) {
             $json = Utils::stringify($this->payload);
             return Utils::stringToBytes($json);
@@ -51,9 +56,20 @@ class JsonDocument extends Document
         return array();
     }
 
-    protected function buildFile(array $metadata) {
+    public function getDataBytes(): array
+    {
+        if (isset($this->data)) {
+            $json = Utils::stringify($this->data);
+            return Utils::stringToBytes($json);
+        }
+
+        return array();
+    }
+
+    protected function buildFile(array $metadata): array
+    {
         if (count($metadata) > 0) {
-            return array (
+            return array(
                 JsonDocument::DATA_KEY => $this->data,
                 JsonDocument::METADATA_KEY => $metadata
             );

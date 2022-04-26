@@ -2,13 +2,14 @@
 
 namespace Bloock\Record\Entity\Document;
 
+use Bloock\Infrastructure\Signature;
 use Bloock\Proof\Entity\Proof;
 
 abstract class Document
 {
     protected $data;
     protected $payload;
-    protected ?array $signature;
+    protected ?array $signatures;
     protected ?Proof $proof;
 
     protected function __construct($src)
@@ -16,7 +17,7 @@ abstract class Document
         $this->setup($src);
 
         $this->proof = $this->fetchProof();
-        $this->signature = $this->fetchSignature();
+        $this->signatures = $this->fetchSignatures();
         $this->data = $this->fetchData();
         $this->payload = $this->fetchPayload();
     }
@@ -25,55 +26,83 @@ abstract class Document
 
     protected abstract function fetchMetadata(string $key);
     protected abstract function fetchData();
-    protected function fetchProof() {
-        return $this->fetchMetadata("proof");
-    }
-    protected function fetchSignature() {
-        return $this->fetchMetadata("signature");
-    }
-    protected function fetchPayload() {
-        $metadata = [];
-        if (isset($this->signature)) {
-            $metadata['signature'] = $this->signature;
+    protected function fetchProof()
+    {
+        $rawProof = $this->fetchMetadata("proof");
+        if (isset($rawProof)) {
+            return new Proof($rawProof['leaves'], $rawProof['nodes'], $rawProof['depth'], $rawProof['bitmap'], $rawProof['anchor']);
         }
-        
+        return null;
+    }
+    protected function fetchSignatures()
+    {
+        $rawSignatures = $this->fetchMetadata("signatures");
+
+        if (isset($rawSignatures)) {
+            $signatures = array();
+            foreach ($rawSignatures as $rawSignature) {
+                array_push($signatures, new Signature($rawSignature['signature'], $rawSignature['header']));
+            }
+            return $signatures;
+        }
+        return null;
+    }
+    protected function fetchPayload()
+    {
+        $metadata = [];
+        if (isset($this->signatures)) {
+            $metadata['signatures'] = $this->signatures;
+        }
+
         return $this->buildFile($metadata);
     }
 
-    public function getData() {
+    public function getData()
+    {
         return $this->data;
     }
-    public function getProof(): ?Proof {
+    public function getProof(): ?Proof
+    {
         return $this->proof;
     }
-    public function getSignature() {
-        return $this->signature;
+    public function getSignatures(): ?array
+    {
+        return $this->signatures;
     }
-    public function getPayload() {
+    public function getPayload()
+    {
         return $this->payload;
     }
 
+    public abstract function getDataBytes(): array;
     public abstract function getPayloadBytes(): array;
 
-    public function setProof(Proof $proof): void {
+    public function setProof(Proof $proof): void
+    {
         $this->proof = $proof;
     }
-    public function setSignature($signature): void {
-        $this->signature = $signature;
+    public function addSignature(Signature ...$signatures): void
+    {
+        if (!isset($this->signatures)) {
+            $this->signatures = [];
+        }
+
+        array_push($this->signatures, ...$signatures);
     }
 
-    public function build() {
+    public function build()
+    {
         $metadata = [];
-        
+
         if (isset($this->proof)) {
             $metadata['proof'] = $this->proof;
         }
 
-        if (isset($this->signature)) {
-            $metadata['signature'] = $this->signature;
+        if (isset($this->signatures)) {
+            $metadata['signatures'] = $this->signatures;
         }
 
-        return $this->buildFile($metadata);
+        return json_encode($this->buildFile($metadata));
     }
 
     protected abstract function buildFile(array $metadata);

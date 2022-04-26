@@ -13,6 +13,8 @@ use Bloock\Proof\Entity\Proof;
 use Bloock\Record\Entity\Record;
 use Bloock\Proof\Service\ProofService;
 
+error_reporting(E_ALL ^ E_DEPRECATED);
+
 /**
  * Entrypoint to the Bloock SDK:
  *    This SDK offers all the features available in the Bloock Toolset:

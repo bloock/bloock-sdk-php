@@ -10,7 +10,7 @@ use Exception;
  * Proof is the object in charge of storing all data necessary to compute
  * a data integrity check.
  */
-class Proof
+class Proof implements \JsonSerializable
 {
     public $leaves;
     public $nodes;
@@ -71,5 +71,16 @@ class Proof
         }
 
         return false;
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return array(
+            'leaves' => $this->leaves,
+            'nodes' => $this->nodes,
+            'depth' => $this->depth,
+            'bitmap' => $this->bitmap,
+            'anchor' => $this->anchor,
+        );
     }
 }

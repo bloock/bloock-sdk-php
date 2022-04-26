@@ -64,6 +64,15 @@ final class RecordTest extends TestCase
     /**
      * @group unit
      */
+    public function test_from_json_string()
+    {
+        $json = '{"hello":"world"}';
+        $this->assertEquals("586e9b1e1681ba3ebad5ff5e6f673d3e3aa129fcdb76f92083dbc386cdde4312", Record::fromJSON($json)->getHash());
+    }
+
+    /**
+     * @group unit
+     */
     public function test_from_json_with_metadata()
     {
         $json = array(
@@ -74,7 +83,28 @@ final class RecordTest extends TestCase
                 'signature' => array('signature1')
             )
         );
-        $this->assertEquals("42fd3e3f6c78b239cdbfc23d9e36134bac28233347e421c2c83002276d2dbbc4", Record::fromJSON($json)->getHash());
+        $this->assertEquals("586e9b1e1681ba3ebad5ff5e6f673d3e3aa129fcdb76f92083dbc386cdde4312", Record::fromJSON($json)->getHash());
+    }
+
+    /**
+     * @group unit
+     */
+    public function test_from_json_sign()
+    {
+        $json = array(
+            'hello' => 'world'
+        );
+
+        $record = Record::fromJSON($json);
+        $record = $record->sign('ecb8e554bba690eff53f1bc914941d34ae7ec446e0508d14bab3388d3e5c9457');
+
+        $this->assertTrue($record->verify());
+
+        $output = $record->retrieve();
+        $this->assertNotNull($output);
+
+        $record2 = Record::fromJSON((string) $output);
+        $this->assertTrue($record2->verify());
     }
 
     /**
