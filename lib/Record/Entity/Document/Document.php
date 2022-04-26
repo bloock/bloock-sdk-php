@@ -77,17 +77,22 @@ abstract class Document
     public abstract function getDataBytes(): array;
     public abstract function getPayloadBytes(): array;
 
-    public function setProof(Proof $proof): void
+    public function setProof(Proof $proof): self
     {
         $this->proof = $proof;
+        return $this;
     }
-    public function addSignature(Signature ...$signatures): void
+    public function addSignature(Signature ...$signatures): self
     {
         if (!isset($this->signatures)) {
             $this->signatures = [];
         }
 
         array_push($this->signatures, ...$signatures);
+
+        $this->payload = $this->fetchPayload();
+
+        return $this;
     }
 
     public function build(): mixed

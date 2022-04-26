@@ -5,11 +5,11 @@ namespace Bloock\Proof\Service;
 use Bloock\Anchor\Entity\Anchor;
 use Bloock\Config\Entity\Network;
 use Bloock\Proof\Entity\Exception\InvalidProofException;
+use Bloock\Proof\Entity\Exception\InvalidSignatureException;
 use Bloock\Proof\Entity\Exception\ProofNotFoundException;
 use Bloock\Proof\Entity\Proof;
 use Bloock\Proof\Repository\IProofRepository;
 use Bloock\Record\Entity\Exception\InvalidRecordException;
-use Bloock\Record\Entity\Exception\InvalidRecordTypeException;
 use Bloock\Record\Entity\Record;
 use InvalidArgumentException;
 
@@ -53,6 +53,11 @@ final class ProofService implements IProofService
 
     public function verifyRecords(array $records, string $network = null): int
     {
+        $verified = $this->verifySignatures($records);
+        if ($verified == false) {
+            throw new InvalidSignatureException();
+        }
+
         $proof = $this->retrieveProof($records);
         if ($proof == null) {
             throw new ProofNotFoundException();
@@ -68,6 +73,31 @@ final class ProofService implements IProofService
         }
 
         return $this->validateRoot($root, $network);
+    }
+
+    public function verifySignatures(array $records): bool
+    {
+        if (count($records) <= 0) {
+            throw new InvalidArgumentException();
+        }
+
+        foreach ($records as $record) {
+            if (Record::isValid($record) == false) {
+                throw new InvalidRecordException();
+            }
+        }
+
+        try {
+            foreach ($records as $record) {
+                if ($record->verify() == false) {
+                    return false;
+                }
+            }
+        } catch (\Throwable) {
+            return false;
+        }
+
+        return true;
     }
 
     public function verifyProof(Proof $proof): Record

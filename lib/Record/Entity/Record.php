@@ -208,8 +208,9 @@ class Record
     {
         if (isset($this->document)) {
             $signature = $this->signingClient->sign($this->document->getDataBytes(), $privateKey);
-            $this->document->addSignature($signature);
+            $this->document = $this->document->addSignature($signature);
 
+            $newHash = Record::$hashingAlgorithm->generateHash(Utils::bytesToString($this->document->getPayloadBytes()));
             return new Record(
                 Record::$hashingAlgorithm->generateHash(Utils::bytesToString($this->document->getPayloadBytes())),
                 $this->document
@@ -230,7 +231,7 @@ class Record
             }
         }
 
-        throw new InvalidRecordTypeException();
+        return true;
     }
 
     public function getUint8ArrayHash(): array

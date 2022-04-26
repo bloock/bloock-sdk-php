@@ -96,8 +96,11 @@ final class RecordTest extends TestCase
         );
 
         $record = Record::fromJSON($json);
+        $hash = $record->getHash();
         $record = $record->sign('ecb8e554bba690eff53f1bc914941d34ae7ec446e0508d14bab3388d3e5c9457');
+        $hash2 = $record->getHash();
 
+        $this->assertNotEquals($hash, $hash2);
         $this->assertTrue($record->verify());
 
         $output = $record->retrieve();
