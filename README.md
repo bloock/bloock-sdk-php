@@ -93,7 +93,7 @@ try {
 }
 ```
 
-#### Verify Record signature
+### Verify Record signature
 
 You can verify an array of Records. The verifier it is going to check only Records constructed from a JSON file. Documents must be signed before running the verification.
 
