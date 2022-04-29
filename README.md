@@ -305,7 +305,7 @@ try {
 
     $records = [$record];
 
-    $sendReceipt = $sdk->sendRecords($records);
+    $sendReceipts = $sdk->sendRecords($records);
     print 'Write record - Successful!';
 
     $sdk->waitAnchor($sendReceipts[0]->anchor, 60000);
