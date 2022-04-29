@@ -52,7 +52,7 @@ try {
     Record::fromUint8Array([1, 2, 3, 255]);
 
     // From a JSON Document
-    Record::fromJSON({ 'hello': 'world' })
+    Record::fromJSON([ 'hello' => 'world' ]);
 } catch (Exception $e) {
     // Handle exception
 }
@@ -80,7 +80,7 @@ use Bloock\Record\Entity\Record;
 require_once(__DIR__ . "/vendor/autoload.php");
 
 try {
-    $json = {'hello': 'world'};
+    $json = ['hello' => 'world'];
     $record = Record::fromJSON($json);
 
     // Random private key: ecb8e554bba690eff53f1bc914941d34ae7ec446e0508d14bab3388d3e5c9457
@@ -105,8 +105,10 @@ $apiKey = getenv("API_KEY");
 $client = new BloockClient($apiKey);
 
 try {
+    //$records: previously signed record array
+
     $valid = $client->verifySignatures($records);
-    if (valid) {
+    if ($valid) {
         // Valid signature
     } else {
         // Invalid signature
@@ -273,7 +275,7 @@ try {
     $timestamp = $sdk->verifyRecords($records);
 
     // Specifying network
-    $timestamp = $sdk->verifyRecords($records. Network::ETHEREUM_MAINNET);
+    $timestamp = $sdk->verifyRecords($records, Network::ETHEREUM_MAINNET);
 
 } catch (Exception $e) {
     // Handle exception
@@ -301,7 +303,7 @@ try {
 
     $record = $record->sign('ecb8e554bba690eff53f1bc914941d34ae7ec446e0508d14bab3388d3e5c9457');
 
-    $records = [$records];
+    $records = [$record];
 
     $sendReceipt = $sdk->sendRecords($records);
     print 'Write record - Successful!';
