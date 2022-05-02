@@ -62,8 +62,7 @@ class JsonDocument extends Document
     public function getPayloadBytes(): array
     {
         if (isset($this->payload)) {
-            $json = Utils::stringify(json_decode($this->payload, true));
-            return Utils::stringToBytes($json);
+            return Utils::stringToBytes($this->payload);
         }
 
         return array();
@@ -87,10 +86,10 @@ class JsonDocument extends Document
                 JsonDocument::DATA_KEY => $this->data,
                 JsonDocument::METADATA_KEY => $metadata
             );
+            return Utils::stringify($output);
         } else {
             $output = $this->data;
+            return json_encode($output);
         }
-
-        return json_encode($output);
     }
 }

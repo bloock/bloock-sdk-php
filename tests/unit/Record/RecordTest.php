@@ -89,7 +89,9 @@ final class RecordTest extends TestCase
                 )
             )
         );
-        $this->assertEquals("586e9b1e1681ba3ebad5ff5e6f673d3e3aa129fcdb76f92083dbc386cdde4312", Record::fromJSON($json)->getHash());
+        $record = Record::fromJSON($json);
+
+        $this->assertEquals("040b3fc3bb0a00d5056c6c18695ef13875cda75d97d7333ef5e8272befa4ae06", $record->getHash());
     }
 
     /**

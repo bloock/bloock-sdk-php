@@ -2,6 +2,8 @@
 
 namespace Bloock\Infrastructure;
 
+use stdClass;
+
 class Signature implements \JsonSerializable
 {
     public string $signature;
@@ -15,10 +17,17 @@ class Signature implements \JsonSerializable
 
     public function jsonSerialize(): mixed
     {
-        return array(
-            'signature' => $this->signature,
-            'header' => $this->headers,
-        );
+        if (!isset($this->headers) || count($this->headers) <= 0) {
+            return array(
+                'header' => new stdClass,
+                'signature' => $this->signature,
+            );
+        } else {
+            return array(
+                'header' => $this->headers,
+                'signature' => $this->signature,
+            );
+        }
     }
 }
 
