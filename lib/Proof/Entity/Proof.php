@@ -18,14 +18,16 @@ class Proof implements \JsonSerializable
     public $bitmap;
     public $anchor;
 
-    public function __construct(array $leaves, array $nodes, string $depth, string $bitmap, Anchor $anchor = null)
+    public function __construct(array $leaves, array $nodes, string $depth, string $bitmap, mixed $anchor = null)
     {
         $this->leaves = $leaves;
         $this->nodes = $nodes;
         $this->depth = $depth;
         $this->bitmap = $bitmap;
-        if (isset($anchor)) {
+        if (isset($anchor) && $anchor instanceof Anchor) {
             $this->anchor = $anchor;
+        } else if (isset($anchor)) {
+            $this->anchor = new Anchor($anchor['id'], $anchor['blockRoots'], $anchor['networks'], $anchor['root'], $anchor['status']);
         }
     }
 
