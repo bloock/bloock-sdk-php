@@ -32,7 +32,7 @@ final class JsonDocumentTest extends TestCase
     public function test_constructor_with_metadata()
     {
         $json = array(
-            '_payload_' => $this->content,
+            '_data_' => $this->content,
             '_metadata_' => array(
                 'signature' => array('signature1')
             )
@@ -63,7 +63,7 @@ final class JsonDocumentTest extends TestCase
     public function test_two_same_files_with_metadata_generates_same_payload()
     {
         $json = array(
-            '_payload_' => $this->content,
+            '_data_' => $this->content,
             '_metadata_' => array(
                 'signature' => array('signature1')
             )

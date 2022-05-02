@@ -3,6 +3,7 @@
 
 namespace Bloock\Tests;
 
+use Bloock\Infrastructure\Signature;
 use Bloock\Record\Entity\Record;
 use Bloock\Shared\Utils;
 use PHPUnit\Framework\TestCase;
@@ -76,11 +77,16 @@ final class RecordTest extends TestCase
     public function test_from_json_with_metadata()
     {
         $json = array(
-            '_payload_' => array(
+            '_data_' => array(
                 'hello' => 'world'
             ),
             '_metadata_' => array(
-                'signature' => array('signature1')
+                'signatures' => array(
+                    array(
+                        "signature" => "signature1",
+                        "header" => array(),
+                    )
+                )
             )
         );
         $this->assertEquals("586e9b1e1681ba3ebad5ff5e6f673d3e3aa129fcdb76f92083dbc386cdde4312", Record::fromJSON($json)->getHash());

@@ -7,7 +7,7 @@ use Bloock\Shared\Utils;
 
 class JsonDocument extends Document
 {
-    private const DATA_KEY = '_payload_';
+    private const DATA_KEY = '_data_';
     private const METADATA_KEY = '_metadata_';
 
     protected array $source;

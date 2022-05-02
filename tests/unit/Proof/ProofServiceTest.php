@@ -103,7 +103,7 @@ final class ProofServiceTest extends TestCase
     public function test_validate_signatures_invalid()
     {
         $record = Record::fromJSON(array(
-            '_payload_' => array(
+            '_data_' => array(
                 'hello' => 'world'
             ),
             '_metadata_' => array(
