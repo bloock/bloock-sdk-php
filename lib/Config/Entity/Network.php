@@ -6,6 +6,7 @@ class Network
 {
     public const ETHEREUM_MAINNET = "ethereum_mainnet";
     public const ETHEREUM_RINKEBY = "ethereum_rinkeby";
+    public const GNOSIS_CHAIN = "gnosis_chain";
     public const BLOOCK_CHAIN = "bloock_chain";
 
     public static function SelectNetwork(array $networks): string
@@ -20,6 +21,8 @@ class Network
                 switch ($networks[0]['name']) {
                     case self::BLOOCK_CHAIN:
                         return self::BLOOCK_CHAIN;
+                    case self::GNOSIS_CHAIN:
+                        return self::GNOSIS_CHAIN;
                     case self::ETHEREUM_RINKEBY:
                         return self::ETHEREUM_RINKEBY;
                     default:

@@ -25,7 +25,7 @@ final class AnchorRepository implements IAnchorRepository
         $url = $this->getConfigService()->getApiBaseUrl() . "/core/anchor/" . $anchor;
         $response = new AnchorRetrieveResponse($this->getHttpClient()->get($url));
         $anchor = new Anchor(
-            $response->anchorId,
+            $response->id,
             $response->blockRoots,
             $response->networks,
             $response->root,

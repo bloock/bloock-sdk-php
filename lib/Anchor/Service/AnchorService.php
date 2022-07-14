@@ -42,7 +42,7 @@ final class AnchorService implements IAnchorService
         return $anchor;
     }
 
-    public function waitAnchor(int $id, int $timeout = 120000): Anchor
+    public function waitAnchor(int $id, int $timeout = 300000): Anchor
     {
         if (is_int($id) == false || is_int($timeout) == false) {
             throw new InvalidArgumentException();
@@ -69,7 +69,7 @@ final class AnchorService implements IAnchorService
                     throw new WaitAnchorTimeoutException();
                 }
 
-                Utils::sleep(1000);
+                Utils::sleep(10000);
             } catch (Exception $e) {
                 $now = new \DateTime();
                 $currentTime = $now->getTimestamp();

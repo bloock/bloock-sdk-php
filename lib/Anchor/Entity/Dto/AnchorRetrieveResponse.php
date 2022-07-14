@@ -6,7 +6,7 @@ use Bloock\Anchor\Entity\Network;
 
 class AnchorRetrieveResponse
 {
-    public $anchorId;
+    public $id;
     public $blockRoots;
     public $networks;
     public $root;
@@ -14,7 +14,7 @@ class AnchorRetrieveResponse
 
     public function __construct(array $response)
     {
-        $this->anchorId = $response["anchor_id"] ?: 0;
+        $this->id = $response["id"] ?: 0;
         $this->blockRoots = $response["block_roots"] ?: [];
 
         $networks = $response["networks"] ?: [];
