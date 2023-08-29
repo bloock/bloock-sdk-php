@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'bloock/sdk',
-        'pretty_version' => 'v2.6.0-beta.7',
-        'version' => '2.6.0.0-beta7',
-        'reference' => 'e407bf19a3377790d549b48d1d56ecd00d2f5e84',
+        'pretty_version' => 'v2.6.0-beta.8',
+        'version' => '2.6.0.0-beta8',
+        'reference' => 'ced962594e2a04d6825b4b6cf4df5eb3b908a877',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'bloock/sdk' => array(
-            'pretty_version' => 'v2.6.0-beta.7',
-            'version' => '2.6.0.0-beta7',
-            'reference' => 'e407bf19a3377790d549b48d1d56ecd00d2f5e84',
+            'pretty_version' => 'v2.6.0-beta.8',
+            'version' => '2.6.0.0-beta8',
+            'reference' => 'ced962594e2a04d6825b4b6cf4df5eb3b908a877',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
