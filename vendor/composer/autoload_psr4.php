@@ -13,5 +13,6 @@ return array(
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Bloock\\' => array($baseDir . '/Bloock'),
+    'Base32\\' => array($vendorDir . '/christian-riesen/base32/src'),
     '' => array($baseDir . '/protobuf'),
 );

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitfadef3bad9906045d9f3fe45a329d720
+class ComposerStaticInitf7d1722569a350ac1755bfed94057b73
 {
     public static $files = array (
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
@@ -30,6 +30,7 @@ class ComposerStaticInitfadef3bad9906045d9f3fe45a329d720
         'B' => 
         array (
             'Bloock\\' => 7,
+            'Base32\\' => 7,
         ),
     );
 
@@ -61,6 +62,10 @@ class ComposerStaticInitfadef3bad9906045d9f3fe45a329d720
         'Bloock\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Bloock',
+        ),
+        'Base32\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/christian-riesen/base32/src',
         ),
     );
 
@@ -698,15 +703,16 @@ class ComposerStaticInitfadef3bad9906045d9f3fe45a329d720
         'TheSeer\\Tokenizer\\TokenCollectionException' => __DIR__ . '/..' . '/theseer/tokenizer/src/TokenCollectionException.php',
         'TheSeer\\Tokenizer\\Tokenizer' => __DIR__ . '/..' . '/theseer/tokenizer/src/Tokenizer.php',
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
+        'Utils' => __DIR__ . '/../..' . '/tests/E2E/Utils.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitfadef3bad9906045d9f3fe45a329d720::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitfadef3bad9906045d9f3fe45a329d720::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInitfadef3bad9906045d9f3fe45a329d720::$fallbackDirsPsr4;
-            $loader->classMap = ComposerStaticInitfadef3bad9906045d9f3fe45a329d720::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitf7d1722569a350ac1755bfed94057b73::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitf7d1722569a350ac1755bfed94057b73::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitf7d1722569a350ac1755bfed94057b73::$fallbackDirsPsr4;
+            $loader->classMap = ComposerStaticInitf7d1722569a350ac1755bfed94057b73::$classMap;
 
         }, null, ClassLoader::class);
     }
