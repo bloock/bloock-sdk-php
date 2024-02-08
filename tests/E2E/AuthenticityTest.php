@@ -8,7 +8,6 @@ use Bloock\Entity\Authenticity\Signer;
 use Bloock\Entity\Authenticity\SignatureAlg;
 use Bloock\Entity\Key\AccessControl;
 use Bloock\Entity\Key\AccessControlSecret;
-use Bloock\Entity\Key\AccessControlTotp;
 use Bloock\Entity\Key\KeyProtectionLevel;
 use Bloock\Entity\Key\KeyType;
 use Bloock\Entity\Key\Managed;
@@ -123,7 +122,7 @@ final class AuthenticityTest extends TestCase
 
         $totp = $keyClient->setupTotpAccessControl(new Managed($key));
 
-        $code = $this->generateTOTPClient($totp->getSecret(), time());
+        $code = $this->generateTOTPClient($totp->getSecret());
 
         $totpAccessControl = new AccessControlTotp($code);
         $signature = $authenticityClient->sign($record, new Signer($key, null, new AccessControl($totpAccessControl)));

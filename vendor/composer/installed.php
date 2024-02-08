@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'bloock/sdk',
-        'pretty_version' => 'v2.8.0-beta.1',
-        'version' => '2.8.0.0-beta1',
-        'reference' => '373075dc169c017da6a597ab0358d35b3fe18545',
+        'pretty_version' => 'v2.8.0-beta.4',
+        'version' => '2.8.0.0-beta4',
+        'reference' => '6fda345e9f506d1bc16845f35823018a14d11ee3',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'bloock/sdk' => array(
-            'pretty_version' => 'v2.8.0-beta.1',
-            'version' => '2.8.0.0-beta1',
-            'reference' => '373075dc169c017da6a597ab0358d35b3fe18545',
+            'pretty_version' => 'v2.8.0-beta.4',
+            'version' => '2.8.0.0-beta4',
+            'reference' => '6fda345e9f506d1bc16845f35823018a14d11ee3',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -142,6 +142,15 @@
             'reference' => '3767b2c56ce02d01e3491046f33466a1ae60a37f',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpunit/phpunit',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
+        'saggre/phpdocumentor-markdown' => array(
+            'pretty_version' => '0.1.4',
+            'version' => '0.1.4.0',
+            'reference' => 'f9bb90abde2c7c7c740265ae5e3bab5cfa2d9ed4',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../saggre/phpdocumentor-markdown',
             'aliases' => array(),
             'dev_requirement' => true,
         ),

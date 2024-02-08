@@ -12,16 +12,22 @@ use Bloock\Entity\Record\Record;
 use Bloock\GenerateLocalKeyRequest;
 use Bloock\GetSignaturesRequest;
 use Bloock\KeyType;
-use Bloock\SignatureCommonNameRequest;
 use Bloock\SignRequest;
 use Bloock\VerifyRequest;
 use Exception;
 
+/**
+ * Represents a client for interacting with the [Bloock Authenticity service](https://dashboard.bloock.com/login).
+ */
 class AuthenticityClient
 {
     private $bridge;
     private $config;
 
+    /**
+     * Creates a new instance of the AuthenticityClient with default configuration.
+     * @param ConfigData|null $config
+     */
     public function __construct(ConfigData $config = null)
     {
         $this->bridge = new Bridge();
@@ -33,6 +39,7 @@ class AuthenticityClient
     }
 
     /**
+     * Generates ECDSA key pair for signing records.
      * @deprecated Will be deleted in future versions. Use KeyClient.newLocalKey function instead.
      */
     public function generateEcdsaKeyPair(): EcdsaKeyPair
@@ -50,6 +57,13 @@ class AuthenticityClient
         return EcdsaKeyPair::fromProto($res);
     }
 
+    /**
+     * Signs a Bloock record using the specified signer.
+     * @param Record $record
+     * @param Signer $signer
+     * @return Signature
+     * @throws Exception
+     */
     public function sign(Record $record, Signer $signer): Signature
     {
         $req = new SignRequest();
@@ -64,6 +78,12 @@ class AuthenticityClient
         return Signature::fromProto($res->getSignature());
     }
 
+    /**
+     * Verifies the authenticity of a Bloock record.
+     * @param Record $record
+     * @return bool
+     * @throws Exception
+     */
     public function verify(Record $record): bool
     {
         $req = new VerifyRequest();
@@ -78,6 +98,12 @@ class AuthenticityClient
         return $res->getValid();
     }
 
+    /**
+     * Gets the signatures associated with a Bloock record.
+     * @param Record $record
+     * @return array
+     * @throws Exception
+     */
     public function getSignatures(Record $record): array
     {
         $req = new GetSignaturesRequest();
@@ -94,20 +120,5 @@ class AuthenticityClient
             $signatures[] = Signature::fromProto($signature);
         }
         return $signatures;
-    }
-
-    public function getSignatureCommonName(Signature $signature): string
-    {
-        $req = new SignatureCommonNameRequest();
-        $req->setConfigData($this->config);
-        $req->setSignature($signature->toProto());
-
-        $res = $this->bridge->authenticity->GetSignatureCommonName($req);
-
-        if ($res->getError() != null) {
-            throw new Exception($res->getError()->getMessage());
-        }
-
-        return $res->getCommonName();
     }
 }
