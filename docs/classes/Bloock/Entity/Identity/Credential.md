@@ -2,7 +2,7 @@
 
 # Credential
 
-
+Represents a verifiable credential with its associated information. [Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/).
 
 
 
@@ -64,6 +64,21 @@ private \Google\Protobuf\Internal\RepeatedField $type
 
 ```php
 private string $issuanceDate
+```
+
+
+
+
+
+
+***
+
+### expiration
+
+
+
+```php
+private string $expiration
 ```
 
 
@@ -153,10 +168,10 @@ private \Bloock\Entity\Identity\CredentialProof $credentialProof
 
 ### __construct
 
-
+Creates a new Credential instance with the provided details.
 
 ```php
-public __construct(\Google\Protobuf\Internal\RepeatedField $context, string $id, \Google\Protobuf\Internal\RepeatedField $type, string $issuanceDate,  $credentialSubject, \Bloock\Entity\Identity\CredentialStatus $credentialStatus, string $issuer, \Bloock\Entity\Identity\CredentialSchema $credentialSchema, \Bloock\Entity\Identity\CredentialProof $credentialProof): mixed
+public __construct(\Google\Protobuf\Internal\RepeatedField $context, string $id, \Google\Protobuf\Internal\RepeatedField $type, string $issuanceDate, string $expiration,  $credentialSubject, \Bloock\Entity\Identity\CredentialStatus $credentialStatus, string $issuer, \Bloock\Entity\Identity\CredentialSchema $credentialSchema, \Bloock\Entity\Identity\CredentialProof $credentialProof): mixed
 ```
 
 
@@ -174,6 +189,7 @@ public __construct(\Google\Protobuf\Internal\RepeatedField $context, string $id,
 | `$id` | **string** |  |
 | `$type` | **\Google\Protobuf\Internal\RepeatedField** |  |
 | `$issuanceDate` | **string** |  |
+| `$expiration` | **string** |  |
 | `$credentialSubject` | **** |  |
 | `$credentialStatus` | **\Bloock\Entity\Identity\CredentialStatus** |  |
 | `$issuer` | **string** |  |
@@ -215,7 +231,7 @@ public static fromProto(\Bloock\Credential $res): \Bloock\Entity\Identity\Creden
 
 ### fromJson
 
-
+Creates a Credential instance from a JSON string representation.
 
 ```php
 public static fromJson(string $json): \Bloock\Entity\Identity\Credential
@@ -237,12 +253,17 @@ public static fromJson(string $json): \Bloock\Entity\Identity\Credential
 
 
 
+**Throws:**
+
+- [`Exception`](../../../Exception.md)
+
+
 
 ***
 
 ### toJson
 
-
+Converts the Credential instance to its JSON string representation.
 
 ```php
 public toJson(): string
@@ -258,12 +279,17 @@ public toJson(): string
 
 
 
+**Throws:**
+
+- [`Exception`](../../../Exception.md)
+
+
 
 ***
 
 ### getContext
 
-
+Gets the context associated with the credential.
 
 ```php
 public getContext(): \Google\Protobuf\Internal\RepeatedField
@@ -284,7 +310,7 @@ public getContext(): \Google\Protobuf\Internal\RepeatedField
 
 ### getId
 
-
+Gets the ID associated with the credential.
 
 ```php
 public getId(): string
@@ -305,7 +331,7 @@ public getId(): string
 
 ### getType
 
-
+Gets the types associated with the credential.
 
 ```php
 public getType(): \Google\Protobuf\Internal\RepeatedField
@@ -326,7 +352,7 @@ public getType(): \Google\Protobuf\Internal\RepeatedField
 
 ### getIssuanceDate
 
-
+Gets the issuance date of the credential.
 
 ```php
 public getIssuanceDate(): string
@@ -345,9 +371,30 @@ public getIssuanceDate(): string
 
 ***
 
+### getExpiration
+
+Gets the expiration date of the credential.
+
+```php
+public getExpiration(): string
+```
+
+
+
+
+
+
+
+
+
+
+
+
+***
+
 ### getCredentialSubject
 
-
+Gets the subject of the credential.
 
 ```php
 public getCredentialSubject(): mixed
@@ -368,7 +415,7 @@ public getCredentialSubject(): mixed
 
 ### getCredentialStatus
 
-
+Gets the status of the credential.
 
 ```php
 public getCredentialStatus(): \Bloock\Entity\Identity\CredentialStatus
@@ -389,7 +436,7 @@ public getCredentialStatus(): \Bloock\Entity\Identity\CredentialStatus
 
 ### getIssuer
 
-
+Gets the issuer of the credential.
 
 ```php
 public getIssuer(): string
@@ -410,10 +457,31 @@ public getIssuer(): string
 
 ### getCredentialSchema
 
-
+Gets the schema associated with the credential.
 
 ```php
 public getCredentialSchema(): \Bloock\Entity\Identity\CredentialSchema
+```
+
+
+
+
+
+
+
+
+
+
+
+
+***
+
+### getCredentialProof
+
+Gets the proof associated with the credential.
+
+```php
+public getCredentialProof(): \Bloock\Entity\Identity\CredentialProof
 ```
 
 
@@ -450,27 +518,6 @@ public toProto(): \Bloock\Credential
 
 ***
 
-### getCredentialProof
-
-
-
-```php
-public getCredentialProof(): \Bloock\Entity\Identity\CredentialProof
-```
-
-
-
-
-
-
-
-
-
-
-
 
 ***
-
-
-***
-> Automatically generated on 2024-02-07
+> Automatically generated on 2024-02-19

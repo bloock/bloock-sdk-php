@@ -2,7 +2,7 @@
 
 # Schema
 
-
+Represents a schema with its attributes.
 
 
 
@@ -13,12 +13,42 @@
 ## Properties
 
 
-### id
+### cid
 
 
 
 ```php
-private string $id
+private string $cid
+```
+
+
+
+
+
+
+***
+
+### cidJsonLd
+
+
+
+```php
+private string $cidJsonLd
+```
+
+
+
+
+
+
+***
+
+### schemaType
+
+
+
+```php
+private string $schemaType
 ```
 
 
@@ -48,10 +78,10 @@ private string $json
 
 ### __construct
 
-
+Constructs a Schema object with the specified parameters.
 
 ```php
-public __construct(string $id, string $json): mixed
+public __construct(string $cid, string $cidJsonLd, string $schemaType, string $json): mixed
 ```
 
 
@@ -65,7 +95,9 @@ public __construct(string $id, string $json): mixed
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$id` | **string** |  |
+| `$cid` | **string** |  |
+| `$cidJsonLd` | **string** |  |
+| `$schemaType` | **string** |  |
 | `$json` | **string** |  |
 
 
@@ -101,12 +133,54 @@ public static fromProto(\Bloock\Schema $res): \Bloock\Entity\Identity\Schema
 
 ***
 
-### getId
+### getCid
 
-
+Gets the cid of the schema.
 
 ```php
-public getId(): string
+public getCid(): string
+```
+
+
+
+
+
+
+
+
+
+
+
+
+***
+
+### getCidJsonLd
+
+Gets de cid json-ld of the schema.
+
+```php
+public getCidJsonLd(): string
+```
+
+
+
+
+
+
+
+
+
+
+
+
+***
+
+### getSchemaType
+
+Gets the schema type of the schema.
+
+```php
+public getSchemaType(): string
 ```
 
 
@@ -145,7 +219,7 @@ public toProto(): \Bloock\Schema
 
 ### getJson
 
-
+Gets the json representation of the schema.
 
 ```php
 public getJson(): string
@@ -166,4 +240,4 @@ public getJson(): string
 
 
 ***
-> Automatically generated on 2024-02-07
+> Automatically generated on 2024-02-19

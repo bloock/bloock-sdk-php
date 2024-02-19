@@ -2,7 +2,7 @@
 
 # CredentialBuilder
 
-
+Helps construct credentials by specifying various attributes.
 
 
 
@@ -28,12 +28,72 @@ private string $schemaId
 
 ***
 
-### holderKey
+### issuerDid
 
 
 
 ```php
-private string $holderKey
+private string $issuerDid
+```
+
+
+
+
+
+
+***
+
+### holderDid
+
+
+
+```php
+private string $holderDid
+```
+
+
+
+
+
+
+***
+
+### expiration
+
+
+
+```php
+private int $expiration
+```
+
+
+
+
+
+
+***
+
+### version
+
+
+
+```php
+private int $version
+```
+
+
+
+
+
+
+***
+
+### key
+
+
+
+```php
+private \Bloock\Key $key
 ```
 
 
@@ -49,6 +109,51 @@ private string $holderKey
 
 ```php
 private \Bloock\ConfigData $configData
+```
+
+
+
+
+
+
+***
+
+### stringAttributes
+
+
+
+```php
+private array $stringAttributes
+```
+
+
+
+
+
+
+***
+
+### integerAttributes
+
+
+
+```php
+private array $integerAttributes
+```
+
+
+
+
+
+
+***
+
+### decimalAttributes
+
+
+
+```php
+private array $decimalAttributes
 ```
 
 
@@ -103,45 +208,15 @@ private array $datetimeAttributes
 
 ***
 
-### stringAttributes
-
-
-
-```php
-private array $stringAttributes
-```
-
-
-
-
-
-
-***
-
-### numberAttributes
-
-
-
-```php
-private array $numberAttributes
-```
-
-
-
-
-
-
-***
-
 ## Methods
 
 
 ### __construct
 
-
+Creates a new CredentialBuilder instance with the specified parameters.
 
 ```php
-public __construct(string $schemaId, string $holderKey, \Bloock\ConfigData $configData): mixed
+public __construct(\Bloock\Entity\Identity\Issuer $issuer, string $schemaId, string $holderDid, int $expiration, int $version, \Bloock\ConfigData $configData): mixed
 ```
 
 
@@ -155,9 +230,96 @@ public __construct(string $schemaId, string $holderKey, \Bloock\ConfigData $conf
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
+| `$issuer` | **\Bloock\Entity\Identity\Issuer** |  |
 | `$schemaId` | **string** |  |
-| `$holderKey` | **string** |  |
+| `$holderDid` | **string** |  |
+| `$expiration` | **int** |  |
+| `$version` | **int** |  |
 | `$configData` | **\Bloock\ConfigData** |  |
+
+
+
+
+
+***
+
+### withStringAttribute
+
+Adds a string attribute to the CredentialBuilder.
+
+```php
+public withStringAttribute(string $key, string $value): $this
+```
+
+
+
+
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$key` | **string** |  |
+| `$value` | **string** |  |
+
+
+
+
+
+***
+
+### withIntegerAttribute
+
+Adds an integer attribute to the CredentialBuilder.
+
+```php
+public withIntegerAttribute(string $key, int $value): $this
+```
+
+
+
+
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$key` | **string** |  |
+| `$value` | **int** |  |
+
+
+
+
+
+***
+
+### withDecimalAttribute
+
+Adds a decimal attribute to the CredentialBuilder.
+
+```php
+public withDecimalAttribute(string $key, float $value): $this
+```
+
+
+
+
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$key` | **string** |  |
+| `$value` | **float** |  |
 
 
 
@@ -167,10 +329,10 @@ public __construct(string $schemaId, string $holderKey, \Bloock\ConfigData $conf
 
 ### withBooleanAttribute
 
-
+Adds a boolean attribute to the CredentialBuilder.
 
 ```php
-public withBooleanAttribute(string $key, bool $value): \Bloock\Entity\Identity\CredentialBuilder
+public withBooleanAttribute(string $key, bool $value): $this
 ```
 
 
@@ -195,10 +357,10 @@ public withBooleanAttribute(string $key, bool $value): \Bloock\Entity\Identity\C
 
 ### withDateAttribute
 
-
+Adds a date attribute to the CredentialBuilder.
 
 ```php
-public withDateAttribute(string $key, int $value): \Bloock\Entity\Identity\CredentialBuilder
+public withDateAttribute(string $key, \DateTime $value): $this
 ```
 
 
@@ -213,7 +375,7 @@ public withDateAttribute(string $key, int $value): \Bloock\Entity\Identity\Crede
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `$key` | **string** |  |
-| `$value` | **int** |  |
+| `$value` | **\DateTime** |  |
 
 
 
@@ -223,10 +385,10 @@ public withDateAttribute(string $key, int $value): \Bloock\Entity\Identity\Crede
 
 ### withDatetimeAttribute
 
-
+Adds a datetime attribute to the CredentialBuilder.
 
 ```php
-public withDatetimeAttribute(string $key, int $value): \Bloock\Entity\Identity\CredentialBuilder
+public withDatetimeAttribute(string $key, \DateTime $value): $this
 ```
 
 
@@ -241,63 +403,7 @@ public withDatetimeAttribute(string $key, int $value): \Bloock\Entity\Identity\C
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `$key` | **string** |  |
-| `$value` | **int** |  |
-
-
-
-
-
-***
-
-### withStringAttribute
-
-
-
-```php
-public withStringAttribute(string $key, string $value): \Bloock\Entity\Identity\CredentialBuilder
-```
-
-
-
-
-
-
-
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `$key` | **string** |  |
-| `$value` | **string** |  |
-
-
-
-
-
-***
-
-### withNumberAttribute
-
-
-
-```php
-public withNumberAttribute(string $key, int $value): \Bloock\Entity\Identity\CredentialBuilder
-```
-
-
-
-
-
-
-
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `$key` | **string** |  |
-| `$value` | **int** |  |
+| `$value` | **\DateTime** |  |
 
 
 
@@ -307,7 +413,7 @@ public withNumberAttribute(string $key, int $value): \Bloock\Entity\Identity\Cre
 
 ### build
 
-
+Creates and returns a Credential using the specified attributes.
 
 ```php
 public build(): \Bloock\Entity\Identity\CredentialReceipt
@@ -323,9 +429,14 @@ public build(): \Bloock\Entity\Identity\CredentialReceipt
 
 
 
+**Throws:**
+
+- [`Exception`](../../../Exception.md)
+
+
 
 ***
 
 
 ***
-> Automatically generated on 2024-02-07
+> Automatically generated on 2024-02-19

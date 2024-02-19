@@ -163,4 +163,4 @@ public toProto(): \Bloock\Signer
 
 
 ***
-> Automatically generated on 2024-02-07
+> Automatically generated on 2024-02-19

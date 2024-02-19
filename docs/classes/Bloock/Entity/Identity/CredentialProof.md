@@ -2,7 +2,7 @@
 
 # CredentialProof
 
-
+Represents the proof associated with a credential, including signature and sparse merkle tree proof.
 
 
 
@@ -13,12 +13,12 @@
 ## Properties
 
 
-### bloockProof
+### signatureProof
 
 
 
 ```php
-private \Bloock\Entity\Integrity\Proof $bloockProof
+private string $signatureProof
 ```
 
 
@@ -28,12 +28,12 @@ private \Bloock\Entity\Integrity\Proof $bloockProof
 
 ***
 
-### signatureProof
+### sparseMtProof
 
 
 
 ```php
-private \Bloock\Entity\Authenticity\SignatureJws $signatureProof
+private string $sparseMtProof
 ```
 
 
@@ -48,10 +48,10 @@ private \Bloock\Entity\Authenticity\SignatureJws $signatureProof
 
 ### __construct
 
-
+Constructs an CredentialProof object with the specified parameters.
 
 ```php
-public __construct(\Bloock\Entity\Integrity\Proof $bloockProof, \Bloock\Entity\Authenticity\SignatureJws $signatureProof): mixed
+public __construct(string $signatureProof, string $sparseMtProof): mixed
 ```
 
 
@@ -65,8 +65,8 @@ public __construct(\Bloock\Entity\Integrity\Proof $bloockProof, \Bloock\Entity\A
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$bloockProof` | **\Bloock\Entity\Integrity\Proof** |  |
-| `$signatureProof` | **\Bloock\Entity\Authenticity\SignatureJws** |  |
+| `$signatureProof` | **string** |  |
+| `$sparseMtProof` | **string** |  |
 
 
 
@@ -101,12 +101,12 @@ public static fromProto(\Bloock\CredentialProof $res): \Bloock\Entity\Identity\C
 
 ***
 
-### getBloockProof
+### getSignatureProof
 
-
+Retrieve signature proof with string format
 
 ```php
-public getBloockProof(): \Bloock\Entity\Integrity\Proof
+public getSignatureProof(): string
 ```
 
 
@@ -122,12 +122,12 @@ public getBloockProof(): \Bloock\Entity\Integrity\Proof
 
 ***
 
-### getSignatureProof
+### getSparseMtProof
 
-
+Retrieve sparse merkle tree proof with string format
 
 ```php
-public getSignatureProof(): \Bloock\Entity\Authenticity\SignatureJws
+public getSparseMtProof(): string
 ```
 
 
@@ -166,4 +166,4 @@ public toProto(): \Bloock\CredentialProof
 
 
 ***
-> Automatically generated on 2024-02-07
+> Automatically generated on 2024-02-19

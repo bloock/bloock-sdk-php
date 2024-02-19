@@ -2,7 +2,7 @@
 
 # StringAttributeDescriptor
 
-
+Represents a descriptor for an attribute with a string value.
 
 
 
@@ -14,35 +14,6 @@
 
 ## Methods
 
-
-### __construct
-
-
-
-```php
-public __construct(string $displayName, string $technicalName, ?string $description): mixed
-```
-
-
-
-
-
-
-
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `$displayName` | **string** |  |
-| `$technicalName` | **string** |  |
-| `$description` | **?string** |  |
-
-
-
-
-
-***
 
 ### fromProto
 
@@ -101,7 +72,7 @@ public toProto(): \Bloock\StringAttributeDefinition
 
 
 ```php
-public __construct(string $displayName, string $technicalName, ?string $description): mixed
+public __construct(string $displayName, string $technicalName, string|null $description, bool $required): mixed
 ```
 
 
@@ -117,7 +88,8 @@ public __construct(string $displayName, string $technicalName, ?string $descript
 |-----------|------|-------------|
 | `$displayName` | **string** |  |
 | `$technicalName` | **string** |  |
-| `$description` | **?string** |  |
+| `$description` | **string&#124;null** |  |
+| `$required` | **bool** |  |
 
 
 
@@ -127,4 +99,4 @@ public __construct(string $displayName, string $technicalName, ?string $descript
 
 
 ***
-> Automatically generated on 2024-02-07
+> Automatically generated on 2024-02-19

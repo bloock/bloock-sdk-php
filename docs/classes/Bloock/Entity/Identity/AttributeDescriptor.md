@@ -2,7 +2,7 @@
 
 # AttributeDescriptor
 
-
+Represents a descriptor for an attribute.
 
 
 
@@ -15,7 +15,7 @@
 
 ### displayName
 
-
+Is the human-readable display name of the attribute.
 
 ```php
 public string $displayName
@@ -30,7 +30,7 @@ public string $displayName
 
 ### technicalName
 
-
+Is the identifier for the attribute.
 
 ```php
 public string $technicalName
@@ -45,10 +45,25 @@ public string $technicalName
 
 ### description
 
-
+Is a description providing additional information about the attribute.
 
 ```php
-public ?string $description
+public string|null $description
+```
+
+
+
+
+
+
+***
+
+### required
+
+Specifies whether the attribute is required.
+
+```php
+public bool $required
 ```
 
 
@@ -66,7 +81,7 @@ public ?string $description
 
 
 ```php
-public __construct(string $displayName, string $technicalName, ?string $description): mixed
+public __construct(string $displayName, string $technicalName, string|null $description, bool $required): mixed
 ```
 
 
@@ -82,7 +97,8 @@ public __construct(string $displayName, string $technicalName, ?string $descript
 |-----------|------|-------------|
 | `$displayName` | **string** |  |
 | `$technicalName` | **string** |  |
-| `$description` | **?string** |  |
+| `$description` | **string&#124;null** |  |
+| `$required` | **bool** |  |
 
 
 
@@ -92,4 +108,4 @@ public __construct(string $displayName, string $technicalName, ?string $descript
 
 
 ***
-> Automatically generated on 2024-02-07
+> Automatically generated on 2024-02-19

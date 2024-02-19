@@ -2,7 +2,7 @@
 
 # CredentialReceipt
 
-
+Represents a receipt for a credential, including the credential itself, its ID, and type.
 
 
 
@@ -13,12 +13,12 @@
 ## Properties
 
 
-### id
+### credential
 
 
 
 ```php
-private string $id
+private \Bloock\Entity\Identity\Credential $credential
 ```
 
 
@@ -28,12 +28,27 @@ private string $id
 
 ***
 
-### anchorId
+### credentialId
 
 
 
 ```php
-private int $anchorId
+private string $credentialId
+```
+
+
+
+
+
+
+***
+
+### credentialType
+
+
+
+```php
+private string $credentialType
 ```
 
 
@@ -48,10 +63,10 @@ private int $anchorId
 
 ### __construct
 
-
+Constructs an CredentialReceipt object with the specified parameters.
 
 ```php
-public __construct(string $id, int $anchorId): mixed
+public __construct(\Bloock\Entity\Identity\Credential $credential, string $credentialId, string $credentialType): mixed
 ```
 
 
@@ -65,8 +80,9 @@ public __construct(string $id, int $anchorId): mixed
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$id` | **string** |  |
-| `$anchorId` | **int** |  |
+| `$credential` | **\Bloock\Entity\Identity\Credential** |  |
+| `$credentialId` | **string** |  |
+| `$credentialType` | **string** |  |
 
 
 
@@ -101,12 +117,12 @@ public static fromProto(\Bloock\CredentialReceipt $res): \Bloock\Entity\Identity
 
 ***
 
-### getId
+### getCredential
 
-
+Gets the credential object.
 
 ```php
-public getId(): string
+public getCredential(): \Bloock\Entity\Identity\Credential
 ```
 
 
@@ -122,12 +138,33 @@ public getId(): string
 
 ***
 
-### getAnchorId
+### getCredentialId
 
-
+Gets the ID associated with the credential.
 
 ```php
-public getAnchorId(): int
+public getCredentialId(): string
+```
+
+
+
+
+
+
+
+
+
+
+
+
+***
+
+### getCredentialType
+
+Gets the type of the credential.
+
+```php
+public getCredentialType(): string
 ```
 
 
@@ -166,4 +203,4 @@ public toProto(): \Bloock\CredentialReceipt
 
 
 ***
-> Automatically generated on 2024-02-07
+> Automatically generated on 2024-02-19

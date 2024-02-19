@@ -73,12 +73,12 @@ public __construct(\Bloock\ConfigData|null $config = null): mixed
 
 ***
 
-### createIdentity
+### createHolder
 
-Creates a new identity.
+Creates a new holder identity.
 
 ```php
-public createIdentity(\Bloock\Entity\IdentityV2\IdentityKey $identityKey, \Bloock\Entity\IdentityV2\DidParams|null $didParams = null): string
+public createHolder(\Bloock\Entity\Key\Key $holderKey, \Bloock\Entity\Identity\DidType|null $didType = null): \Bloock\Entity\Identity\Holder
 ```
 
 
@@ -92,8 +92,8 @@ public createIdentity(\Bloock\Entity\IdentityV2\IdentityKey $identityKey, \Blooc
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$identityKey` | **\Bloock\Entity\IdentityV2\IdentityKey** |  |
-| `$didParams` | **\Bloock\Entity\IdentityV2\DidParams&#124;null** |  |
+| `$holderKey` | **\Bloock\Entity\Key\Key** |  |
+| `$didType` | **\Bloock\Entity\Identity\DidType&#124;null** |  |
 
 
 
@@ -111,7 +111,7 @@ public createIdentity(\Bloock\Entity\IdentityV2\IdentityKey $identityKey, \Blooc
 Creates a new issuer on the Bloock Identity service.
 
 ```php
-public createIssuer(\Bloock\Entity\IdentityV2\IdentityKey $issuerKey, int $publishInterval, \Bloock\Entity\IdentityV2\DidParams|null $didParams = null, string|null $name = null, string|null $description = null, string|null $image = null): string
+public createIssuer(\Bloock\Entity\Key\Key $issuerKey, int $publishInterval, \Bloock\Entity\Identity\DidType|null $didType = null, string|null $name = null, string|null $description = null, string|null $image = null): \Bloock\Entity\Identity\Issuer
 ```
 
 
@@ -125,9 +125,9 @@ public createIssuer(\Bloock\Entity\IdentityV2\IdentityKey $issuerKey, int $publi
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$issuerKey` | **\Bloock\Entity\IdentityV2\IdentityKey** |  |
+| `$issuerKey` | **\Bloock\Entity\Key\Key** |  |
 | `$publishInterval` | **int** |  |
-| `$didParams` | **\Bloock\Entity\IdentityV2\DidParams&#124;null** |  |
+| `$didType` | **\Bloock\Entity\Identity\DidType&#124;null** |  |
 | `$name` | **string&#124;null** |  |
 | `$description` | **string&#124;null** |  |
 | `$image` | **string&#124;null** |  |
@@ -143,12 +143,12 @@ public createIssuer(\Bloock\Entity\IdentityV2\IdentityKey $issuerKey, int $publi
 
 ***
 
-### getIssuerByKey
+### importIssuer
 
-Gets the DID of an issuer based on the issuer key.
+Gets the issuer based on the issuer key and DID type.
 
 ```php
-public getIssuerByKey(\Bloock\Entity\IdentityV2\IdentityKey $issuerKey, \Bloock\Entity\IdentityV2\DidParams|null $didParams = null): string
+public importIssuer(\Bloock\Entity\Key\Key $issuerKey, \Bloock\Entity\Identity\DidType|null $didType = null): \Bloock\Entity\Identity\Issuer
 ```
 
 
@@ -162,8 +162,8 @@ public getIssuerByKey(\Bloock\Entity\IdentityV2\IdentityKey $issuerKey, \Bloock\
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$issuerKey` | **\Bloock\Entity\IdentityV2\IdentityKey** |  |
-| `$didParams` | **\Bloock\Entity\IdentityV2\DidParams&#124;null** |  |
+| `$issuerKey` | **\Bloock\Entity\Key\Key** |  |
+| `$didType` | **\Bloock\Entity\Identity\DidType&#124;null** |  |
 
 
 
@@ -181,7 +181,7 @@ public getIssuerByKey(\Bloock\Entity\IdentityV2\IdentityKey $issuerKey, \Bloock\
 Creates a new schema builder for defining a schema on the Bloock Identity service.
 
 ```php
-public buildSchema(string $displayName, string $schemaType, string $version, string $description): \Bloock\Entity\IdentityV2\SchemaBuilder
+public buildSchema(string $displayName, string $schemaType, string $version, string $description): \Bloock\Entity\Identity\SchemaBuilder
 ```
 
 
@@ -211,7 +211,7 @@ public buildSchema(string $displayName, string $schemaType, string $version, str
 Gets a schema from the Bloock Identity service based on the schema ID (ex: Qma1t4uzbnB93E4rasNdu5UWMDh5qg3wMkPm68cnEyfnoM).
 
 ```php
-public getSchema(string $id): \Bloock\Entity\IdentityV2\Schema
+public getSchema(string $id): \Bloock\Entity\Identity\Schema
 ```
 
 
@@ -243,7 +243,7 @@ public getSchema(string $id): \Bloock\Entity\IdentityV2\Schema
 Creates a new credential builder for defining a credential on the Bloock Identity service.
 
 ```php
-public buildCredential(string $schemaId, string $issuerDid, string $holderDid, int $expiration, int $version): \Bloock\Entity\IdentityV2\CredentialBuilder
+public buildCredential(\Bloock\Entity\Identity\Issuer $issuer, string $schemaId, string $holderDid, int $expiration, int $version): \Bloock\Entity\Identity\CredentialBuilder
 ```
 
 
@@ -257,8 +257,8 @@ public buildCredential(string $schemaId, string $issuerDid, string $holderDid, i
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
+| `$issuer` | **\Bloock\Entity\Identity\Issuer** |  |
 | `$schemaId` | **string** |  |
-| `$issuerDid` | **string** |  |
 | `$holderDid` | **string** |  |
 | `$expiration` | **int** |  |
 | `$version` | **int** |  |
@@ -269,12 +269,12 @@ public buildCredential(string $schemaId, string $issuerDid, string $holderDid, i
 
 ***
 
-### publishIssuerState
+### forcePublishIssuerState
 
 Publishes the state of an issuer on the Bloock Identity service.
 
 ```php
-public publishIssuerState(string $issuerDid, \Bloock\Entity\Authenticity\Signer $signer): \Bloock\Entity\IdentityV2\IssuerStateReceipt
+public forcePublishIssuerState(\Bloock\Entity\Identity\Issuer $issuer): \Bloock\Entity\Identity\IssuerStateReceipt
 ```
 
 
@@ -288,8 +288,7 @@ public publishIssuerState(string $issuerDid, \Bloock\Entity\Authenticity\Signer 
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$issuerDid` | **string** |  |
-| `$signer` | **\Bloock\Entity\Authenticity\Signer** |  |
+| `$issuer` | **\Bloock\Entity\Identity\Issuer** |  |
 
 
 
@@ -307,7 +306,7 @@ public publishIssuerState(string $issuerDid, \Bloock\Entity\Authenticity\Signer 
 Gets the proof of a credential on the Bloock Identity service.
 
 ```php
-public getCredentialProof(string $issuerDid, string $credentialId): \Bloock\Entity\IdentityV2\CredentialProof
+public getCredentialProof(string $issuerDid, string $credentialId): \Bloock\Entity\Identity\CredentialProof
 ```
 
 
@@ -340,7 +339,7 @@ public getCredentialProof(string $issuerDid, string $credentialId): \Bloock\Enti
 Revokes a credential on the Bloock Identity service.
 
 ```php
-public revokeCredential(\Bloock\Entity\IdentityV2\Credential $credential, \Bloock\Entity\Authenticity\Signer $signer): bool
+public revokeCredential(\Bloock\Entity\Identity\Credential $credential, \Bloock\Entity\Identity\Issuer $issuer): bool
 ```
 
 
@@ -354,8 +353,8 @@ public revokeCredential(\Bloock\Entity\IdentityV2\Credential $credential, \Blooc
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$credential` | **\Bloock\Entity\IdentityV2\Credential** |  |
-| `$signer` | **\Bloock\Entity\Authenticity\Signer** |  |
+| `$credential` | **\Bloock\Entity\Identity\Credential** |  |
+| `$issuer` | **\Bloock\Entity\Identity\Issuer** |  |
 
 
 
@@ -373,7 +372,7 @@ public revokeCredential(\Bloock\Entity\IdentityV2\Credential $credential, \Blooc
 Creates a new verification session on the identity managed API provided.
 
 ```php
-public createVerification(string $proofRequest): \Bloock\Entity\IdentityV2\VerificationReceipt
+public createVerification(string $proofRequest): \Bloock\Entity\Identity\VerificationReceipt
 ```
 
 
@@ -467,4 +466,4 @@ public getVerificationStatus(int $sessionID): bool
 
 
 ***
-> Automatically generated on 2024-02-07
+> Automatically generated on 2024-02-19

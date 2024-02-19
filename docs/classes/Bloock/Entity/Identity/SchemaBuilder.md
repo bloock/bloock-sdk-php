@@ -2,7 +2,7 @@
 
 # SchemaBuilder
 
-
+Is a builder pattern for constructing schema instances.
 
 
 
@@ -28,12 +28,42 @@ private string $displayName
 
 ***
 
-### technicalName
+### schemaType
 
 
 
 ```php
-private string $technicalName
+private string $schemaType
+```
+
+
+
+
+
+
+***
+
+### version
+
+
+
+```php
+private string $version
+```
+
+
+
+
+
+
+***
+
+### description
+
+
+
+```php
+private string $description
 ```
 
 
@@ -49,6 +79,51 @@ private string $technicalName
 
 ```php
 private \Bloock\ConfigData $configData
+```
+
+
+
+
+
+
+***
+
+### stringAttributes
+
+
+
+```php
+private array $stringAttributes
+```
+
+
+
+
+
+
+***
+
+### integerAttributes
+
+
+
+```php
+private array $integerAttributes
+```
+
+
+
+
+
+
+***
+
+### decimalAttributes
+
+
+
+```php
+private array $decimalAttributes
 ```
 
 
@@ -103,12 +178,12 @@ private array $datetimeAttributes
 
 ***
 
-### stringAttributes
+### stringEnumAttributes
 
 
 
 ```php
-private array $stringAttributes
+private array $stringEnumAttributes
 ```
 
 
@@ -118,12 +193,27 @@ private array $stringAttributes
 
 ***
 
-### numberAttributes
+### integerEnumAttributes
 
 
 
 ```php
-private array $numberAttributes
+private array $integerEnumAttributes
+```
+
+
+
+
+
+
+***
+
+### decimalEnumAttributes
+
+
+
+```php
+private array $decimalEnumAttributes
 ```
 
 
@@ -138,10 +228,10 @@ private array $numberAttributes
 
 ### __construct
 
-
+Creates a new instance of SchemaBuilder with initial values.
 
 ```php
-public __construct(string $displayName, string $technicalName, \Bloock\ConfigData $configData): mixed
+public __construct(string $displayName, string $schemaType, string $version, string $description, \Bloock\ConfigData $configData): mixed
 ```
 
 
@@ -156,95 +246,10 @@ public __construct(string $displayName, string $technicalName, \Bloock\ConfigDat
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `$displayName` | **string** |  |
-| `$technicalName` | **string** |  |
+| `$schemaType` | **string** |  |
+| `$version` | **string** |  |
+| `$description` | **string** |  |
 | `$configData` | **\Bloock\ConfigData** |  |
-
-
-
-
-
-***
-
-### addBooleanAttribute
-
-
-
-```php
-public addBooleanAttribute(string $name, string $technicalName, ?string $description): \Bloock\Entity\Identity\SchemaBuilder
-```
-
-
-
-
-
-
-
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `$name` | **string** |  |
-| `$technicalName` | **string** |  |
-| `$description` | **?string** |  |
-
-
-
-
-
-***
-
-### addDateAttribute
-
-
-
-```php
-public addDateAttribute(string $name, string $technicalName, ?string $description): \Bloock\Entity\Identity\SchemaBuilder
-```
-
-
-
-
-
-
-
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `$name` | **string** |  |
-| `$technicalName` | **string** |  |
-| `$description` | **?string** |  |
-
-
-
-
-
-***
-
-### addDateTimeAttribute
-
-
-
-```php
-public addDateTimeAttribute(string $name, string $technicalName, ?string $description): \Bloock\Entity\Identity\SchemaBuilder
-```
-
-
-
-
-
-
-
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `$name` | **string** |  |
-| `$technicalName` | **string** |  |
-| `$description` | **?string** |  |
 
 
 
@@ -254,10 +259,10 @@ public addDateTimeAttribute(string $name, string $technicalName, ?string $descri
 
 ### addStringAttribute
 
-
+Adds a string attribute descriptor to the schema builder.
 
 ```php
-public addStringAttribute(string $name, string $technicalName, ?string $description): \Bloock\Entity\Identity\SchemaBuilder
+public addStringAttribute(string $name, string $technicalName, string|null $description, bool $required): $this
 ```
 
 
@@ -273,7 +278,8 @@ public addStringAttribute(string $name, string $technicalName, ?string $descript
 |-----------|------|-------------|
 | `$name` | **string** |  |
 | `$technicalName` | **string** |  |
-| `$description` | **?string** |  |
+| `$description` | **string&#124;null** |  |
+| `$required` | **bool** |  |
 
 
 
@@ -281,12 +287,12 @@ public addStringAttribute(string $name, string $technicalName, ?string $descript
 
 ***
 
-### addNumberAttribute
+### addIntegerAttribute
 
-
+Adds an integer attribute descriptor to the schema builder.
 
 ```php
-public addNumberAttribute(string $name, string $technicalName, ?string $description): \Bloock\Entity\Identity\SchemaBuilder
+public addIntegerAttribute(string $name, string $technicalName, string|null $description, bool $required): $this
 ```
 
 
@@ -302,7 +308,221 @@ public addNumberAttribute(string $name, string $technicalName, ?string $descript
 |-----------|------|-------------|
 | `$name` | **string** |  |
 | `$technicalName` | **string** |  |
-| `$description` | **?string** |  |
+| `$description` | **string&#124;null** |  |
+| `$required` | **bool** |  |
+
+
+
+
+
+***
+
+### addDecimalAttribute
+
+Adds a decimal attribute descriptor to the schema builder.
+
+```php
+public addDecimalAttribute(string $name, string $technicalName, string|null $description, bool $required): $this
+```
+
+
+
+
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$name` | **string** |  |
+| `$technicalName` | **string** |  |
+| `$description` | **string&#124;null** |  |
+| `$required` | **bool** |  |
+
+
+
+
+
+***
+
+### addBooleanAttribute
+
+Adds a boolean attribute descriptor to the schema builder.
+
+```php
+public addBooleanAttribute(string $name, string $technicalName, string|null $description, bool $required): $this
+```
+
+
+
+
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$name` | **string** |  |
+| `$technicalName` | **string** |  |
+| `$description` | **string&#124;null** |  |
+| `$required` | **bool** |  |
+
+
+
+
+
+***
+
+### addDateAttribute
+
+Adds a date attribute descriptor to the schema builder.
+
+```php
+public addDateAttribute(string $name, string $technicalName, string|null $description, bool $required): $this
+```
+
+
+
+
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$name` | **string** |  |
+| `$technicalName` | **string** |  |
+| `$description` | **string&#124;null** |  |
+| `$required` | **bool** |  |
+
+
+
+
+
+***
+
+### addDateTimeAttribute
+
+Adds a datetime attribute descriptor to the schema builder.
+
+```php
+public addDateTimeAttribute(string $name, string $technicalName, string|null $description, bool $required): $this
+```
+
+
+
+
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$name` | **string** |  |
+| `$technicalName` | **string** |  |
+| `$description` | **string&#124;null** |  |
+| `$required` | **bool** |  |
+
+
+
+
+
+***
+
+### addStringEnumAttribute
+
+Adds a string enum attribute descriptor to the schema builder.
+
+```php
+public addStringEnumAttribute(string $name, string $technicalName, string|null $description, bool $required, array $enumeration): $this
+```
+
+
+
+
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$name` | **string** |  |
+| `$technicalName` | **string** |  |
+| `$description` | **string&#124;null** |  |
+| `$required` | **bool** |  |
+| `$enumeration` | **array** |  |
+
+
+
+
+
+***
+
+### addIntegerEnumAttribute
+
+Adds an integer enum attribute descriptor to the schema builder.
+
+```php
+public addIntegerEnumAttribute(string $name, string $technicalName, string|null $description, bool $required, array $enumeration): $this
+```
+
+
+
+
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$name` | **string** |  |
+| `$technicalName` | **string** |  |
+| `$description` | **string&#124;null** |  |
+| `$required` | **bool** |  |
+| `$enumeration` | **array** |  |
+
+
+
+
+
+***
+
+### addDecimalEnumAttribute
+
+Adds a decimal enum attribute descriptor to the schema builder.
+
+```php
+public addDecimalEnumAttribute(string $name, string $technicalName, string|null $description, bool $required, array $enumeration): $this
+```
+
+
+
+
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$name` | **string** |  |
+| `$technicalName` | **string** |  |
+| `$description` | **string&#124;null** |  |
+| `$required` | **bool** |  |
+| `$enumeration` | **array** |  |
 
 
 
@@ -312,7 +532,7 @@ public addNumberAttribute(string $name, string $technicalName, ?string $descript
 
 ### build
 
-
+Creates a schema using the configured attributes.
 
 ```php
 public build(): \Bloock\Entity\Identity\Schema
@@ -328,9 +548,14 @@ public build(): \Bloock\Entity\Identity\Schema
 
 
 
+**Throws:**
+
+- [`Exception`](../../../Exception.md)
+
+
 
 ***
 
 
 ***
-> Automatically generated on 2024-02-07
+> Automatically generated on 2024-02-19

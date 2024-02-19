@@ -2,7 +2,7 @@
 
 # CredentialSchema
 
-
+Represents the schema information for a credential, including its ID and type.
 
 
 
@@ -48,7 +48,7 @@ private string $type
 
 ### __construct
 
-
+Constructs an CredentialSchema object with the specified parameters.
 
 ```php
 public __construct(string $id, string $type): mixed
@@ -103,7 +103,7 @@ public static fromProto(\Bloock\CredentialSchema $res): \Bloock\Entity\Identity\
 
 ### getId
 
-
+Gets the id of the credential.
 
 ```php
 public getId(): string
@@ -124,7 +124,7 @@ public getId(): string
 
 ### getType
 
-
+Gets the type of the credential.
 
 ```php
 public getType(): string
@@ -166,4 +166,4 @@ public toProto(): \Bloock\CredentialSchema
 
 
 ***
-> Automatically generated on 2024-02-07
+> Automatically generated on 2024-02-19

@@ -2,7 +2,7 @@
 
 # DateAttribute
 
-
+Represents an attribute with a date value, including its key and formatted value.
 
 
 
@@ -69,7 +69,7 @@ public toProto(): \Bloock\DateAttribute
 
 ### __construct
 
-
+Constructs an Attribute object with the specified parameters.
 
 ```php
 public __construct(string $id,  $value): mixed
@@ -97,4 +97,4 @@ public __construct(string $id,  $value): mixed
 
 
 ***
-> Automatically generated on 2024-02-07
+> Automatically generated on 2024-02-19

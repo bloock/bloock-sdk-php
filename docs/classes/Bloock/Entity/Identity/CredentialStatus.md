@@ -2,7 +2,7 @@
 
 # CredentialStatus
 
-
+Represents the status information for a credential, including its ID, revocation nonce, and type.
 
 
 
@@ -63,7 +63,7 @@ private string $type
 
 ### __construct
 
-
+Constructs an CredentialStatus object with the specified parameters.
 
 ```php
 public __construct(string $id, int $revocationNonce, string $type): mixed
@@ -119,7 +119,7 @@ public static fromProto(\Bloock\CredentialStatus $res): \Bloock\Entity\Identity\
 
 ### getId
 
-
+Gets the ID associated with the credential.
 
 ```php
 public getId(): string
@@ -140,7 +140,7 @@ public getId(): string
 
 ### getRevocationNonce
 
-
+Gets the revocation nonce associated with the credential.
 
 ```php
 public getRevocationNonce(): int
@@ -161,7 +161,7 @@ public getRevocationNonce(): int
 
 ### getType
 
-
+Gets the type of the credential.
 
 ```php
 public getType(): string
@@ -203,4 +203,4 @@ public toProto(): \Bloock\CredentialStatus
 
 
 ***
-> Automatically generated on 2024-02-07
+> Automatically generated on 2024-02-19
