@@ -78,7 +78,7 @@ public __construct(\Bloock\ConfigData|null $config = null): mixed
 Creates a new holder identity.
 
 ```php
-public createHolder(\Bloock\Entity\Key\Key $holderKey, \Bloock\Entity\Identity\DidType|null $didType = null): \Bloock\Entity\Identity\Holder
+public createHolder(\Bloock\Entity\Key\Key $holderKey, string $didMethod): \Bloock\Entity\Identity\Holder
 ```
 
 
@@ -93,7 +93,7 @@ public createHolder(\Bloock\Entity\Key\Key $holderKey, \Bloock\Entity\Identity\D
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `$holderKey` | **\Bloock\Entity\Key\Key** |  |
-| `$didType` | **\Bloock\Entity\Identity\DidType&#124;null** |  |
+| `$didMethod` | **string** |  |
 
 
 
@@ -111,7 +111,7 @@ public createHolder(\Bloock\Entity\Key\Key $holderKey, \Bloock\Entity\Identity\D
 Creates a new issuer on the Bloock Identity service.
 
 ```php
-public createIssuer(\Bloock\Entity\Key\Key $issuerKey, int $publishInterval, \Bloock\Entity\Identity\DidType|null $didType = null, string|null $name = null, string|null $description = null, string|null $image = null): \Bloock\Entity\Identity\Issuer
+public createIssuer(\Bloock\Entity\Key\Key $issuerKey, int $publishInterval, string $didMethod, string|null $name = null, string|null $description = null, string|null $image = null): \Bloock\Entity\Identity\Issuer
 ```
 
 
@@ -127,7 +127,7 @@ public createIssuer(\Bloock\Entity\Key\Key $issuerKey, int $publishInterval, \Bl
 |-----------|------|-------------|
 | `$issuerKey` | **\Bloock\Entity\Key\Key** |  |
 | `$publishInterval` | **int** |  |
-| `$didType` | **\Bloock\Entity\Identity\DidType&#124;null** |  |
+| `$didMethod` | **string** |  |
 | `$name` | **string&#124;null** |  |
 | `$description` | **string&#124;null** |  |
 | `$image` | **string&#124;null** |  |
@@ -145,10 +145,10 @@ public createIssuer(\Bloock\Entity\Key\Key $issuerKey, int $publishInterval, \Bl
 
 ### importIssuer
 
-Gets the issuer based on the issuer key and DID type.
+Gets the issuer based on the issuer key and DID method.
 
 ```php
-public importIssuer(\Bloock\Entity\Key\Key $issuerKey, \Bloock\Entity\Identity\DidType|null $didType = null): \Bloock\Entity\Identity\Issuer
+public importIssuer(\Bloock\Entity\Key\Key $issuerKey, string $didMethod): \Bloock\Entity\Identity\Issuer
 ```
 
 
@@ -163,7 +163,7 @@ public importIssuer(\Bloock\Entity\Key\Key $issuerKey, \Bloock\Entity\Identity\D
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `$issuerKey` | **\Bloock\Entity\Key\Key** |  |
-| `$didType` | **\Bloock\Entity\Identity\DidType&#124;null** |  |
+| `$didMethod` | **string** |  |
 
 
 
@@ -262,6 +262,61 @@ public buildCredential(\Bloock\Entity\Identity\Issuer $issuer, string $schemaId,
 | `$holderDid` | **string** |  |
 | `$expiration` | **int** |  |
 | `$version` | **int** |  |
+
+
+
+
+
+***
+
+### getCredential
+
+Retrieves the Verifiable Credential entity based on the credential ID (UUID). (ex: 1bf0c79e-55e6-4f14-aa9d-fb55619ba0cf)
+
+```php
+public getCredential(string $credentialId): \Bloock\Entity\Identity\Credential
+```
+
+
+
+
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$credentialId` | **string** |  |
+
+
+
+
+
+***
+
+### getCredentialOffer
+
+Retrieves the json raw offer based on the credential ID (UUID). (ex: 1bf0c79e-55e6-4f14-aa9d-fb55619ba0cf)
+
+```php
+public getCredentialOffer(\Bloock\Entity\Identity\Issuer $issuer, string $credentialId): string
+```
+
+
+
+
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$issuer` | **\Bloock\Entity\Identity\Issuer** |  |
+| `$credentialId` | **string** |  |
 
 
 
@@ -466,4 +521,4 @@ public getVerificationStatus(int $sessionID): bool
 
 
 ***
-> Automatically generated on 2024-02-19
+> Automatically generated on 2024-02-21

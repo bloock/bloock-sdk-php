@@ -28,21 +28,6 @@ private string $schemaId
 
 ***
 
-### issuerDid
-
-
-
-```php
-private string $issuerDid
-```
-
-
-
-
-
-
-***
-
 ### holderDid
 
 
@@ -439,4 +424,4 @@ public build(): \Bloock\Entity\Identity\CredentialReceipt
 
 
 ***
-> Automatically generated on 2024-02-19
+> Automatically generated on 2024-02-21

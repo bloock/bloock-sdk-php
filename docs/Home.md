@@ -113,7 +113,6 @@ This is an automatically generated documentation for **Documentation**.
 |-------|-------------|
 | [`Attribute`](./classes/Bloock/Entity/Identity/Attribute.md) | Represents an attribute with an identifier and a corresponding value.|
 | [`AttributeDescriptor`](./classes/Bloock/Entity/Identity/AttributeDescriptor.md) | Represents a descriptor for an attribute.|
-| [`Blockchain`](./classes/Bloock/Entity/Identity/Blockchain.md) | Represents an enumeration of blockchains used in the DID.|
 | [`BooleanAttribute`](./classes/Bloock/Entity/Identity/BooleanAttribute.md) | Represents an attribute with a boolean value.|
 | [`BooleanAttributeDescriptor`](./classes/Bloock/Entity/Identity/BooleanAttributeDescriptor.md) | Represents a descriptor for a boolean attribute.|
 | [`Credential`](./classes/Bloock/Entity/Identity/Credential.md) | Represents a verifiable credential with its associated information. [Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model-2.0/).|
@@ -131,15 +130,13 @@ This is an automatically generated documentation for **Documentation**.
 | [`DecimalAttributeDescriptor`](./classes/Bloock/Entity/Identity/DecimalAttributeDescriptor.md) | Represents a descriptor for an attribute with a decimal value.|
 | [`DecimalEnumAttributeDescriptor`](./classes/Bloock/Entity/Identity/DecimalEnumAttributeDescriptor.md) | Represents a descriptor for an attribute with a decimal enum value.|
 | [`Did`](./classes/Bloock/Entity/Identity/Did.md) | Represents a DID.|
-| [`DidType`](./classes/Bloock/Entity/Identity/DidType.md) | Represents parameters used for generating DIDs.|
+| [`DidMethod`](./classes/Bloock/Entity/Identity/DidMethod.md) | Represents the type of method did.|
 | [`Holder`](./classes/Bloock/Entity/Identity/Holder.md) | Represents a Holder identity.|
 | [`IntegerAttribute`](./classes/Bloock/Entity/Identity/IntegerAttribute.md) | Represents an attribute with an integer value.|
 | [`IntegerAttributeDescriptor`](./classes/Bloock/Entity/Identity/IntegerAttributeDescriptor.md) | Represents a descriptor for an attribute with an integer value.|
 | [`IntegerEnumAttributeDescriptor`](./classes/Bloock/Entity/Identity/IntegerEnumAttributeDescriptor.md) | Represents a descriptor for an attribute with an integer enum value.|
 | [`Issuer`](./classes/Bloock/Entity/Identity/Issuer.md) | Represents an Issuer identity.|
 | [`IssuerStateReceipt`](./classes/Bloock/Entity/Identity/IssuerStateReceipt.md) | Represents a receipt for the issuer&#039;s state.|
-| [`Method`](./classes/Bloock/Entity/Identity/Method.md) | Represents an enumeration of methods used in the DID.|
-| [`Network`](./classes/Bloock/Entity/Identity/Network.md) | Represents an enumeration of network identifiers.|
 | [`PublishIntervalParams`](./classes/Bloock/Entity/Identity/PublishIntervalParams.md) | Represents different publish intervals.|
 | [`Schema`](./classes/Bloock/Entity/Identity/Schema.md) | Represents a schema with its attributes.|
 | [`SchemaBuilder`](./classes/Bloock/Entity/Identity/SchemaBuilder.md) | Is a builder pattern for constructing schema instances.|
@@ -215,4 +212,4 @@ This is an automatically generated documentation for **Documentation**.
 
 
 ***
-> Automatically generated on 2024-02-19
+> Automatically generated on 2024-02-21

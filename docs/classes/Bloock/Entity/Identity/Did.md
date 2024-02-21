@@ -28,12 +28,12 @@ private string $did
 
 ***
 
-### didType
+### didMethod
 
 
 
 ```php
-private \Bloock\Entity\Identity\DidType $didType
+private \Bloock\Entity\Identity\DidMethod $didMethod
 ```
 
 
@@ -51,7 +51,7 @@ private \Bloock\Entity\Identity\DidType $didType
 Returns a new instance of Did for the given parameters.
 
 ```php
-public __construct(string $did, \Bloock\Entity\Identity\DidType $didType): mixed
+public __construct(string $did, \Bloock\Entity\Identity\DidMethod $didMethod): mixed
 ```
 
 
@@ -66,7 +66,7 @@ public __construct(string $did, \Bloock\Entity\Identity\DidType $didType): mixed
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `$did` | **string** |  |
-| `$didType` | **\Bloock\Entity\Identity\DidType** |  |
+| `$didMethod` | **\Bloock\Entity\Identity\DidMethod** |  |
 
 
 
@@ -95,12 +95,12 @@ public getDid(): string
 
 ***
 
-### getDidType
+### getDidMethod
 
-Gets the did type.
+Gets the did method.
 
 ```php
-public getDidType(): \Bloock\Entity\Identity\DidType
+public getDidMethod(): \Bloock\Entity\Identity\DidMethod
 ```
 
 
@@ -118,4 +118,4 @@ public getDidType(): \Bloock\Entity\Identity\DidType
 
 
 ***
-> Automatically generated on 2024-02-19
+> Automatically generated on 2024-02-21

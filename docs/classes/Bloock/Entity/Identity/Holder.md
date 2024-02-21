@@ -51,7 +51,7 @@ private \Bloock\Entity\Key\Key $key
 Returns a new instance of Holder identity for the given parameters.
 
 ```php
-public __construct(string $did, \Bloock\Entity\Identity\DidType $didType, \Bloock\Entity\Key\Key $key): mixed
+public __construct(string $did, \Bloock\Entity\Identity\DidMethod $didMethod, \Bloock\Entity\Key\Key $key): mixed
 ```
 
 
@@ -66,7 +66,7 @@ public __construct(string $did, \Bloock\Entity\Identity\DidType $didType, \Blooc
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `$did` | **string** |  |
-| `$didType` | **\Bloock\Entity\Identity\DidType** |  |
+| `$didMethod` | **\Bloock\Entity\Identity\DidMethod** |  |
 | `$key` | **\Bloock\Entity\Key\Key** |  |
 
 
@@ -119,4 +119,4 @@ public getKey(): \Bloock\Entity\Key\Key
 
 
 ***
-> Automatically generated on 2024-02-19
+> Automatically generated on 2024-02-21
