@@ -119,4 +119,4 @@ public getKey(): \Bloock\Entity\Key\Key
 
 
 ***
-> Automatically generated on 2024-02-21
+> Automatically generated on 2024-02-22

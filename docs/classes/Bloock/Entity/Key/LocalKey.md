@@ -140,4 +140,4 @@ public toProto(): \Bloock\LocalKey
 
 
 ***
-> Automatically generated on 2024-02-21
+> Automatically generated on 2024-02-22

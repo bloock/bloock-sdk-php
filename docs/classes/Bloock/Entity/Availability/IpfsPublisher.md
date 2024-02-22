@@ -92,4 +92,4 @@ public toProto(): \Bloock\Publisher
 
 
 ***
-> Automatically generated on 2024-02-21
+> Automatically generated on 2024-02-22
