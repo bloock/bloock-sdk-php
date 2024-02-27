@@ -424,4 +424,4 @@ public build(): \Bloock\Entity\Identity\CredentialReceipt
 
 
 ***
-> Automatically generated on 2024-02-22
+> Automatically generated on 2024-02-26
