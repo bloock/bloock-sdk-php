@@ -77,4 +77,4 @@ public static fromProto(int $alg): int
 
 
 ***
-> Automatically generated on 2024-02-29
+> Automatically generated on 2024-03-04
