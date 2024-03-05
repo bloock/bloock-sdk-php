@@ -118,4 +118,4 @@ public getDidMethod(): \Bloock\Entity\Identity\DidMethod
 
 
 ***
-> Automatically generated on 2024-03-04
+> Automatically generated on 2024-03-05

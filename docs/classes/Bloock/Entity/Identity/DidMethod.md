@@ -76,4 +76,4 @@ public static fromProto(int $method): string
 
 
 ***
-> Automatically generated on 2024-03-04
+> Automatically generated on 2024-03-05
