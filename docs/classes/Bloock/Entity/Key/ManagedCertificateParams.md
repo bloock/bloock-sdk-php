@@ -33,7 +33,7 @@ public string $keyType
 Represents the subject details of the certificate.
 
 ```php
-public \Bloock\Entity\Key\SubjectCertficateParams $subjectParams
+public \Bloock\Entity\Key\SubjectCertificateParams $subjectParams
 ```
 
 
@@ -140,4 +140,4 @@ public toProto(): \Bloock\ManagedCertificateParams
 
 
 ***
-> Automatically generated on 2024-03-05
+> Automatically generated on 2024-03-14

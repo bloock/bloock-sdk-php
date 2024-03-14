@@ -140,4 +140,4 @@ public retrieve(\Bloock\Entity\Availability\Loader $loader): \Bloock\Entity\Reco
 
 
 ***
-> Automatically generated on 2024-03-05
+> Automatically generated on 2024-03-14

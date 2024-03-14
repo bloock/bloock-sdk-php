@@ -93,7 +93,7 @@ public ?\Bloock\Entity\Key\AccessControl $accessControl
 
 ### __construct
 
-Creates a new Encrypter instance with a local key, managed key, local certificate or managed certifiate.
+Creates a new Encrypter instance with a local key, managed key, local certificate or managed certificate.
 
 ```php
 public __construct( $key, \Bloock\Entity\Key\AccessControl|null $accessControl = null): mixed
@@ -147,4 +147,4 @@ public toProto(): \Bloock\Encrypter
 
 
 ***
-> Automatically generated on 2024-03-05
+> Automatically generated on 2024-03-14

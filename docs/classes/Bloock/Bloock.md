@@ -28,21 +28,6 @@ public static string $apiKey
 
 ***
 
-### forceEnv
-
-Is a string variable used to force a specific environment configuration, it allows developers to set a predefined environment for the Bloock SDK.
-
-```php
-public static string $forceEnv
-```
-
-
-
-* This property is **static**.
-
-
-***
-
 ### identityApiHost
 
 Is a string variable representing the host URL used for Identity Managed API, required to be set for identity-related features of the Bloock SDK.
@@ -64,21 +49,6 @@ Is a string variable representing the host URL used for API communication with t
 
 ```php
 public static string $apiHost
-```
-
-
-
-* This property is **static**.
-
-
-***
-
-### disableAnalytics
-
-Is a boolean variable that, when set to true, disables the analytics feature in the Bloock SDK.
-
-```php
-public static bool $disableAnalytics
 ```
 
 
@@ -164,4 +134,4 @@ public static setContractAddress(\Bloock\Network $network, string $contractAddre
 
 
 ***
-> Automatically generated on 2024-03-05
+> Automatically generated on 2024-03-14
