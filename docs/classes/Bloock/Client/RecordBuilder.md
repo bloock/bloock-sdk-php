@@ -270,4 +270,4 @@ public getDetails(): \Bloock\Entity\Record\RecordDetails
 
 
 ***
-> Automatically generated on 2024-03-14
+> Automatically generated on 2024-03-28

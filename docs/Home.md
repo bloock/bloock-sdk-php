@@ -173,6 +173,7 @@ This is an automatically generated documentation for **Documentation**.
 | [`AccessControl`](./classes/Bloock/Entity/Key/AccessControl.md) | Represents access control information, including Time-based One-Time Password (TOTP) and secret-based access.|
 | [`AccessControlSecret`](./classes/Bloock/Entity/Key/AccessControlSecret.md) | Represents a secret used for secret-based access control.|
 | [`AccessControlTotp`](./classes/Bloock/Entity/Key/AccessControlTotp.md) | Represents a Time-based One-Time Password ([TOTP](https://datatracker.ietf.org/doc/html/rfc6238)) code used for access control.|
+| [`AccessControlType`](./classes/Bloock/Entity/Key/AccessControlType.md) | Represents the access control type a cryptographic key.|
 | [`CertificateType`](./classes/Bloock/Entity/Key/CertificateType.md) | Represents the type of certificate.|
 | [`EcdsaKeyPair`](./classes/Bloock/Entity/Key/EcdsaKeyPair.md) | Represents an ecdsa key pair, with private and public key.|
 | [`ImportCertificateParams`](./classes/Bloock/Entity/Key/ImportCertificateParams.md) | Represents the parameters for importing a certificate.|
@@ -212,4 +213,4 @@ This is an automatically generated documentation for **Documentation**.
 
 
 ***
-> Automatically generated on 2024-03-14
+> Automatically generated on 2024-03-28

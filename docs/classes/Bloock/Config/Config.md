@@ -64,4 +64,4 @@ public static newConfigData(\Bloock\ConfigData $configData): \Bloock\ConfigData
 
 
 ***
-> Automatically generated on 2024-03-14
+> Automatically generated on 2024-03-28

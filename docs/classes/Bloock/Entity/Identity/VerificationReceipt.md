@@ -166,4 +166,4 @@ public toProto(): \Bloock\VerificationReceipt
 
 
 ***
-> Automatically generated on 2024-03-14
+> Automatically generated on 2024-03-28

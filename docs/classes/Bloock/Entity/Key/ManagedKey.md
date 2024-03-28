@@ -103,6 +103,21 @@ public string $key
 
 ***
 
+### accessControlType
+
+Is the access control type for the key.
+
+```php
+public string $accessControlType
+```
+
+
+
+
+
+
+***
+
 ## Methods
 
 
@@ -111,7 +126,7 @@ public string $key
 Constructs a ManagedKey object with the specified parameters.
 
 ```php
-public __construct(string $id, string|null $name, string $protection, string $keyType, int|null $expiration, string $key): mixed
+public __construct(string $id, string|null $name, string $protection, string $keyType, int|null $expiration, string $key, string $accessControlType): mixed
 ```
 
 
@@ -131,6 +146,7 @@ public __construct(string $id, string|null $name, string $protection, string $ke
 | `$keyType` | **string** |  |
 | `$expiration` | **int&#124;null** |  |
 | `$key` | **string** |  |
+| `$accessControlType` | **string** |  |
 
 
 
@@ -188,4 +204,4 @@ public toProto(): \Bloock\ManagedKey
 
 
 ***
-> Automatically generated on 2024-03-14
+> Automatically generated on 2024-03-28
