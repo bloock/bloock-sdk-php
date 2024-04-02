@@ -264,4 +264,4 @@ public fromLoader(\Bloock\Entity\Availability\Loader $loader): \Bloock\Client\Re
 
 
 ***
-> Automatically generated on 2024-03-28
+> Automatically generated on 2024-04-02
