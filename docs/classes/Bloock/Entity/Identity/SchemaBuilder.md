@@ -558,4 +558,4 @@ public build(): \Bloock\Entity\Identity\Schema
 
 
 ***
-> Automatically generated on 2024-04-02
+> Automatically generated on 2024-04-16
