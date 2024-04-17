@@ -188,4 +188,4 @@ public toProto(): \Bloock\ManagedCertificate
 
 
 ***
-> Automatically generated on 2024-04-16
+> Automatically generated on 2024-04-17
