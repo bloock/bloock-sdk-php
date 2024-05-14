@@ -111,7 +111,7 @@ private ?\Bloock\Encrypter $decrypter
 Creates a new RecordBuilder with default configuration.
 
 ```php
-public __construct( $payload, int $recordTypes, \Bloock\ConfigData $configData): mixed
+public __construct(mixed $payload, int $recordTypes, \Bloock\ConfigData $configData): mixed
 ```
 
 
@@ -125,7 +125,7 @@ public __construct( $payload, int $recordTypes, \Bloock\ConfigData $configData):
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$payload` | **** |  |
+| `$payload` | **mixed** |  |
 | `$recordTypes` | **int** |  |
 | `$configData` | **\Bloock\ConfigData** |  |
 
@@ -270,4 +270,4 @@ public getDetails(): \Bloock\Entity\Record\RecordDetails
 
 
 ***
-> Automatically generated on 2024-04-17
+> Automatically generated on 2024-05-13

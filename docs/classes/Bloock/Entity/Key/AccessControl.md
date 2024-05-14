@@ -51,7 +51,7 @@ public ?\Bloock\Entity\Key\AccessControlSecret $accessControlSecret
 Constructs AccessControl object from an AccessControlTotp or AccessControlSecret object.
 
 ```php
-public __construct( $accessControl): mixed
+public __construct(mixed $accessControl): mixed
 ```
 
 
@@ -65,7 +65,7 @@ public __construct( $accessControl): mixed
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$accessControl` | **** |  |
+| `$accessControl` | **mixed** |  |
 
 
 
@@ -101,4 +101,4 @@ public toProto(): \Bloock\AccessControl
 
 
 ***
-> Automatically generated on 2024-04-17
+> Automatically generated on 2024-05-13

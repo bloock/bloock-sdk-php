@@ -171,7 +171,7 @@ private \Bloock\Entity\Identity\CredentialProof $credentialProof
 Creates a new Credential instance with the provided details.
 
 ```php
-public __construct(\Google\Protobuf\Internal\RepeatedField $context, string $id, \Google\Protobuf\Internal\RepeatedField $type, string $issuanceDate, string $expiration,  $credentialSubject, \Bloock\Entity\Identity\CredentialStatus $credentialStatus, string $issuer, \Bloock\Entity\Identity\CredentialSchema $credentialSchema, \Bloock\Entity\Identity\CredentialProof $credentialProof): mixed
+public __construct(\Google\Protobuf\Internal\RepeatedField $context, string $id, \Google\Protobuf\Internal\RepeatedField $type, string $issuanceDate, string $expiration, mixed $credentialSubject, \Bloock\Entity\Identity\CredentialStatus $credentialStatus, string $issuer, \Bloock\Entity\Identity\CredentialSchema $credentialSchema, \Bloock\Entity\Identity\CredentialProof $credentialProof): mixed
 ```
 
 
@@ -190,7 +190,7 @@ public __construct(\Google\Protobuf\Internal\RepeatedField $context, string $id,
 | `$type` | **\Google\Protobuf\Internal\RepeatedField** |  |
 | `$issuanceDate` | **string** |  |
 | `$expiration` | **string** |  |
-| `$credentialSubject` | **** |  |
+| `$credentialSubject` | **mixed** |  |
 | `$credentialStatus` | **\Bloock\Entity\Identity\CredentialStatus** |  |
 | `$issuer` | **string** |  |
 | `$credentialSchema` | **\Bloock\Entity\Identity\CredentialSchema** |  |
@@ -520,4 +520,4 @@ public toProto(): \Bloock\Credential
 
 
 ***
-> Automatically generated on 2024-04-17
+> Automatically generated on 2024-05-13

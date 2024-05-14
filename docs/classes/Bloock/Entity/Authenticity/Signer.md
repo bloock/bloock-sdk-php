@@ -111,7 +111,7 @@ public ?\Bloock\Entity\Key\AccessControl $accessControl
 Creates a Signer instance with a local key, managed key, local certificate or managed certificate.
 
 ```php
-public __construct( $key, string|null $hashAlg = null, \Bloock\Entity\Key\AccessControl|null $accessControl = null): mixed
+public __construct(mixed $key, string|null $hashAlg = null, \Bloock\Entity\Key\AccessControl|null $accessControl = null): mixed
 ```
 
 
@@ -125,7 +125,7 @@ public __construct( $key, string|null $hashAlg = null, \Bloock\Entity\Key\Access
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$key` | **** |  |
+| `$key` | **mixed** |  |
 | `$hashAlg` | **string&#124;null** |  |
 | `$accessControl` | **\Bloock\Entity\Key\AccessControl&#124;null** |  |
 
@@ -163,4 +163,4 @@ public toProto(): \Bloock\Signer
 
 
 ***
-> Automatically generated on 2024-04-17
+> Automatically generated on 2024-05-13

@@ -51,7 +51,7 @@ public ?\Bloock\Entity\Key\ManagedCertificate $managedCertificate
 Constructs a Managed object for a given managed key or managed certificate object.
 
 ```php
-public __construct( $key): mixed
+public __construct(mixed $key): mixed
 ```
 
 
@@ -65,7 +65,7 @@ public __construct( $key): mixed
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$key` | **** |  |
+| `$key` | **mixed** |  |
 
 
 
@@ -80,4 +80,4 @@ public __construct( $key): mixed
 
 
 ***
-> Automatically generated on 2024-04-17
+> Automatically generated on 2024-05-13

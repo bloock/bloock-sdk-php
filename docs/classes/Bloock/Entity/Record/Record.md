@@ -246,4 +246,4 @@ public setProof(\Bloock\Entity\Integrity\Proof $proof): void
 
 
 ***
-> Automatically generated on 2024-04-17
+> Automatically generated on 2024-05-13

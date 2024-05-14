@@ -51,7 +51,7 @@ public $value
 Constructs an Attribute object with the specified parameters.
 
 ```php
-public __construct(string $id,  $value): mixed
+public __construct(string $id, mixed $value): mixed
 ```
 
 
@@ -66,7 +66,7 @@ public __construct(string $id,  $value): mixed
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `$id` | **string** |  |
-| `$value` | **** |  |
+| `$value` | **mixed** |  |
 
 
 
@@ -76,4 +76,4 @@ public __construct(string $id,  $value): mixed
 
 
 ***
-> Automatically generated on 2024-04-17
+> Automatically generated on 2024-05-13

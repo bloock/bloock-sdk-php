@@ -51,7 +51,7 @@ public ?\Bloock\Entity\Key\ManagedKey $managedKey
 Creates a Key instance with a local or managed key.
 
 ```php
-public __construct( $key): mixed
+public __construct(mixed $key): mixed
 ```
 
 
@@ -65,7 +65,7 @@ public __construct( $key): mixed
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$key` | **** |  |
+| `$key` | **mixed** |  |
 
 
 
@@ -101,4 +101,4 @@ public toProto(): \Bloock\Key
 
 
 ***
-> Automatically generated on 2024-04-17
+> Automatically generated on 2024-05-13
