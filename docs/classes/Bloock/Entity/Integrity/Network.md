@@ -79,4 +79,4 @@ public static toProto(string $network): int
 
 
 ***
-> Automatically generated on 2024-05-13
+> Automatically generated on 2024-05-14
