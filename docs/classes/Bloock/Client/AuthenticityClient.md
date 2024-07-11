@@ -195,4 +195,4 @@ public getSignatures(\Bloock\Entity\Record\Record $record): array
 
 
 ***
-> Automatically generated on 2024-05-14
+> Automatically generated on 2024-07-11

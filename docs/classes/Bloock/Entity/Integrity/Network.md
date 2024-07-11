@@ -14,9 +14,8 @@ Represents a network.
 | Constant | Visibility | Type | Value |
 |:---------|:-----------|:-----|:------|
 |`ETHEREUM_MAINNET`|public| |&quot;ETHEREUM_MAINNET&quot;|
-|`ETHEREUM_GOERLI`|public| |&quot;ETHEREUM_GOERLI&quot;|
+|`ETHEREUM_SEPOLIA`|public| |&quot;ETHEREUM_SEPOLIA&quot;|
 |`GNOSIS_CHAIN`|public| |&quot;GNOSIS_CHAIN&quot;|
-|`BLOOCK_CHAIN`|public| |&quot;BLOOCK_CHAIN&quot;|
 |`POLYGON_CHAIN`|public| |&quot;POLYGON_CHAIN&quot;|
 
 
@@ -79,4 +78,4 @@ public static toProto(string $network): int
 
 
 ***
-> Automatically generated on 2024-05-14
+> Automatically generated on 2024-07-11

@@ -37,4 +37,4 @@ public toProto(): \Bloock\PublisherArgs
 
 
 ***
-> Automatically generated on 2024-05-14
+> Automatically generated on 2024-07-11

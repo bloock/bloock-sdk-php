@@ -81,4 +81,4 @@ public toProto(): \Bloock\AccessControlSecret
 
 
 ***
-> Automatically generated on 2024-05-14
+> Automatically generated on 2024-07-11
