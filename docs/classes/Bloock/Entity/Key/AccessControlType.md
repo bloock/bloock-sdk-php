@@ -78,4 +78,4 @@ public static fromProto(int $alg): string
 
 
 ***
-> Automatically generated on 2024-07-12
+> Automatically generated on 2024-07-17

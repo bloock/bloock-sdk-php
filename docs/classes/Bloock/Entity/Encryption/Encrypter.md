@@ -147,4 +147,4 @@ public toProto(): \Bloock\Encrypter
 
 
 ***
-> Automatically generated on 2024-07-12
+> Automatically generated on 2024-07-17
