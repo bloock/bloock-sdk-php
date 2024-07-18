@@ -166,4 +166,4 @@ public toProto(): \Bloock\SignatureHeaderJWS
 
 
 ***
-> Automatically generated on 2024-07-17
+> Automatically generated on 2024-07-18

@@ -79,6 +79,9 @@ This is an automatically generated documentation for **Documentation**.
 | [`HostedPublisher`](./classes/Bloock/Entity/Availability/HostedPublisher.md) | Represents a publisher for hosted data availability.|
 | [`IpfsLoader`](./classes/Bloock/Entity/Availability/IpfsLoader.md) | Represents a loader for IPFS data availability.|
 | [`IpfsPublisher`](./classes/Bloock/Entity/Availability/IpfsPublisher.md) | Represents a publisher for IPFS data availability.|
+| [`IpnsKey`](./classes/Bloock/Entity/Availability/IpnsKey.md) | Represents an object with various key types.|
+| [`IpnsLoader`](./classes/Bloock/Entity/Availability/IpnsLoader.md) | Represents a loader for IPNS data availability.|
+| [`IpnsPublisher`](./classes/Bloock/Entity/Availability/IpnsPublisher.md) | Represents a publisher for IPNS data availability.|
 | [`LoaderArgs`](./classes/Bloock/Entity/Availability/LoaderArgs.md) | Represents the arguments for a data loader.|
 | [`PublisherArgs`](./classes/Bloock/Entity/Availability/PublisherArgs.md) | Represents the arguments for a data publisher.|
 
@@ -213,4 +216,4 @@ This is an automatically generated documentation for **Documentation**.
 
 
 ***
-> Automatically generated on 2024-07-17
+> Automatically generated on 2024-07-18

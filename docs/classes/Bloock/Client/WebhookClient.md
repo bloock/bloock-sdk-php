@@ -110,4 +110,4 @@ public verifyWebhookSignature(string $payload, string $header, string $secretKey
 
 
 ***
-> Automatically generated on 2024-07-17
+> Automatically generated on 2024-07-18
