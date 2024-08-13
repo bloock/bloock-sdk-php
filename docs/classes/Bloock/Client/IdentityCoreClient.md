@@ -106,4 +106,4 @@ public buildCredential(\Bloock\Entity\Identity\Issuer $issuer, string $schemaId,
 
 
 ***
-> Automatically generated on 2024-07-18
+> Automatically generated on 2024-08-13

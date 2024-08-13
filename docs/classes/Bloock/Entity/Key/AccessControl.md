@@ -101,4 +101,4 @@ public toProto(): \Bloock\AccessControl
 
 
 ***
-> Automatically generated on 2024-07-18
+> Automatically generated on 2024-08-13
