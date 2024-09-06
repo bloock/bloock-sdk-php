@@ -98,4 +98,4 @@ public toProto(): \Bloock\Loader
 
 
 ***
-> Automatically generated on 2024-08-13
+> Automatically generated on 2024-09-06
