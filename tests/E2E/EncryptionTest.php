@@ -161,10 +161,16 @@ final class EncryptionTest extends TestCase
 
         $totp = $keyClient->setupTotpAccessControl(new Managed($key));
 
-        $code = $this->generateTOTPClient($totp->getSecret());
+        $clock ??= new InternalClock();
+        $totpClient = TOTP::createFromSecret($totp->secret, $clock);
 
-        $totpAccessControl = new AccessControlTotp($code);
-        $encryptedRecord = $encryptionClient->encrypt($record, new Encrypter($key, new AccessControl($totpAccessControl)));
+        try {
+            $totpAccessControl = new AccessControlTotp($totpClient->now());
+            $encryptedRecord = $encryptionClient->encrypt($record, new Encrypter($key, new AccessControl($totpAccessControl)));
+        } catch(Exception $e) {
+            $totpAccessControl = new AccessControlTotp($totpClient->now());
+            $encryptedRecord = $encryptionClient->encrypt($record, new Encrypter($key, new AccessControl($totpAccessControl)));
+        }
 
         $decryptedRecord = $recordClient->fromRecord($encryptedRecord)
             ->withDecrypter(new Encrypter($key, new AccessControl($totpAccessControl)))

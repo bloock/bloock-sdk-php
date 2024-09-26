@@ -2,7 +2,7 @@
 
 # IpnsKey
 
-Represents an object with various key types.
+Represents an object with a key uuid identifier.
 
 
 
@@ -13,27 +13,12 @@ Represents an object with various key types.
 ## Properties
 
 
-### managedKey
+### keyID
 
 
 
 ```php
-public ?\Bloock\Entity\Key\ManagedKey $managedKey
-```
-
-
-
-
-
-
-***
-
-### managedCertificate
-
-
-
-```php
-public ?\Bloock\Entity\Key\ManagedCertificate $managedCertificate
+public string $keyID
 ```
 
 
@@ -48,10 +33,10 @@ public ?\Bloock\Entity\Key\ManagedCertificate $managedCertificate
 
 ### __construct
 
-Creates an IpnsKey instance with a managed key.
+Creates an IpnsKey instance with a key uuid identifier.
 
 ```php
-public __construct(mixed $key): mixed
+public __construct(mixed $keyID): mixed
 ```
 
 
@@ -65,7 +50,7 @@ public __construct(mixed $key): mixed
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$key` | **mixed** |  |
+| `$keyID` | **mixed** |  |
 
 
 
@@ -99,6 +84,33 @@ public toProto(): \Bloock\IpnsKey
 
 ***
 
+### fromProto
+
+
+
+```php
+public static fromProto(\Bloock\IpnsKey $ipnsKey = null): ?\Bloock\Entity\Availability\IpnsKey
+```
+
+
+
+* This method is **static**.
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$ipnsKey` | **\Bloock\IpnsKey** |  |
+
+
+
+
 
 ***
-> Automatically generated on 2024-09-06
+
+
+***
+> Automatically generated on 2024-09-26

@@ -129,4 +129,4 @@ public toProto(): \Bloock\AuthenticityDetails
 
 
 ***
-> Automatically generated on 2024-09-06
+> Automatically generated on 2024-09-26

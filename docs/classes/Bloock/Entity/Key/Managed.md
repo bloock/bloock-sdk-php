@@ -80,4 +80,4 @@ public __construct(mixed $key): mixed
 
 
 ***
-> Automatically generated on 2024-09-06
+> Automatically generated on 2024-09-26

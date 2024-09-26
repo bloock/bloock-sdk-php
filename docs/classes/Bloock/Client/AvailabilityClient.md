@@ -78,7 +78,7 @@ public __construct(\Bloock\ConfigData|null $config = null): mixed
 Publishes a Bloock record to the Availability service using the specified publisher.
 
 ```php
-public publish(\Bloock\Entity\Record\Record $record, \Bloock\Entity\Availability\Publisher $publisher): string
+public publish(\Bloock\Entity\Record\Record $record, \Bloock\Entity\Availability\Publisher $publisher): \Bloock\Entity\Availability\PublishResponse
 ```
 
 
@@ -140,4 +140,4 @@ public retrieve(\Bloock\Entity\Availability\Loader $loader): \Bloock\Entity\Reco
 
 
 ***
-> Automatically generated on 2024-09-06
+> Automatically generated on 2024-09-26

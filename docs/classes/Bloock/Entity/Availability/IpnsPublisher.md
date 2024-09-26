@@ -53,7 +53,7 @@ private \Bloock\Entity\Availability\PublisherArgs $args
 Constructs a IpnsPublisher object with the specified parameters.
 
 ```php
-public __construct(mixed $key): mixed
+public __construct(mixed $key = null): mixed
 ```
 
 
@@ -98,4 +98,4 @@ public toProto(): \Bloock\Publisher
 
 
 ***
-> Automatically generated on 2024-09-06
+> Automatically generated on 2024-09-26
