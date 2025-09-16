@@ -466,4 +466,4 @@ public setupSecretAccessControl(\Bloock\Entity\Key\Managed $key, string $secret,
 
 
 ***
-> Automatically generated on 2024-09-26
+> Automatically generated on 2025-09-16

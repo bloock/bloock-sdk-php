@@ -36,7 +36,7 @@ public ?string $password
 Constructs a new ImportCertificateParams object with the specified or not password.
 
 ```php
-public __construct(string $password = null): mixed
+public __construct(?string $password = null): mixed
 ```
 
 
@@ -50,7 +50,7 @@ public __construct(string $password = null): mixed
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$password` | **string** |  |
+| `$password` | **?string** |  |
 
 
 
@@ -60,4 +60,4 @@ public __construct(string $password = null): mixed
 
 
 ***
-> Automatically generated on 2024-09-26
+> Automatically generated on 2025-09-16

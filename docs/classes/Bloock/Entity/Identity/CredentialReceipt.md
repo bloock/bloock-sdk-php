@@ -203,4 +203,4 @@ public toProto(): \Bloock\CredentialReceipt
 
 
 ***
-> Automatically generated on 2024-09-26
+> Automatically generated on 2025-09-16

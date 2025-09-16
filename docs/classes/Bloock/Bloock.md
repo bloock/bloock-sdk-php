@@ -134,4 +134,4 @@ public static setContractAddress(\Bloock\Network $network, string $contractAddre
 
 
 ***
-> Automatically generated on 2024-09-26
+> Automatically generated on 2025-09-16

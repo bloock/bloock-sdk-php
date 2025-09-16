@@ -89,7 +89,7 @@ public toProto(): \Bloock\IpnsKey
 
 
 ```php
-public static fromProto(\Bloock\IpnsKey $ipnsKey = null): ?\Bloock\Entity\Availability\IpnsKey
+public static fromProto(?\Bloock\IpnsKey $ipnsKey = null): ?\Bloock\Entity\Availability\IpnsKey
 ```
 
 
@@ -103,7 +103,7 @@ public static fromProto(\Bloock\IpnsKey $ipnsKey = null): ?\Bloock\Entity\Availa
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$ipnsKey` | **\Bloock\IpnsKey** |  |
+| `$ipnsKey` | **?\Bloock\IpnsKey** |  |
 
 
 
@@ -113,4 +113,4 @@ public static fromProto(\Bloock\IpnsKey $ipnsKey = null): ?\Bloock\Entity\Availa
 
 
 ***
-> Automatically generated on 2024-09-26
+> Automatically generated on 2025-09-16
